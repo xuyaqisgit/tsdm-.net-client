@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         public void Sreach(string body)
         {
             GetContent(cookie, String.Format("http://www.tsdm.me/plugin.php?id=Kahrpba:search&query={0}&mobile=yes", body));
-            dynamic = JsonConvert.DeserializeObject<dynamic>(Regex.Replace(StreamToString(), "[\\]", ""));
+            dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
 
         }
         public void GetThread(string tid, string page)
