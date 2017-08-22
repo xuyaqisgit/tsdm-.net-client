@@ -15,27 +15,49 @@ namespace WindowsFormsApp1
         public dynamic dynamic;
         public string formhash;
         public string message;
-        public string html;
+        public void Pay(string tid)
+        {
+            GetContent(cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid=628244");
+            var GetResult = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            formhash = GetResult.formhash;
+            PostContent(cookie, "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes", String.Format("formhash={0}&referer=http://www.tsdm.me/./&tid={1}&paysubmit=true",formhash,tid));
+            GetContent(cookie, String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&mobile=yes",tid));
+        }
         public void Sreach(string body)
         {
             GetContent(cookie, String.Format("http://www.tsdm.me/plugin.php?id=Kahrpba:search&query={0}&mobile=yes", body));
             dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            stream.Flush();
 
         }
-        public void GetThread(string tid, string page)
+        public string GetThread(string tid, string page)
         {
             GetContent(cookie, String.Format("http://www.tsdm.me/forum.php?mod=viewthread&mobile=yes&tsdmapp=1&tid={0}&page={1} ", tid, page));
             dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            stream.Flush();
+            string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" /><style type=\"text/css\">img{ width:auto; height:auto; max-width:100%; max-height:100%;}</style></head>";
+            string post = "";
+            if (dynamic.thread_price != null)
+            {
+                post += String.Format("<div><a href=\"http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes\">购买主题 价格:{0}</a><div>", dynamic.thread_price);
+            }
+            foreach (var item in dynamic.postlist)
+            {
+                post += String.Format("<table><tbody><tr><td width=\"60\"><div width=\"60\"><div width=\"60\"><img src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td width=\"400\"><div width=\"400\"><div width=\"400\"><table width=\"400\" cellspacing=\"0\" cellpadding=\"0\"><tbody><tr><td width=\"400\">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
+            }
+            return (head + "<body>" + post.Replace(" target=\"_blank\"", "") + "</body></html>");
         }
         public void GetForum(string fid, string page)
         {
             GetContent(cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=forumdisplay&fid={0}&page={1}", fid, page));
             dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            stream.Flush();
         }
         public void GetForum(string gid)
         {
             GetContent(cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&gid={0}", gid));
             dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            stream.Flush();
         }
         public void Check()
         {
@@ -63,11 +85,13 @@ namespace WindowsFormsApp1
                 System.Windows.Forms.MessageBox.Show("回复有问题，请重试" + ReplyResult.message);
                 tf = false;
             }
+            stream.Flush();
         }
         public void UserInfo()
         {
             GetContent(cookie, "http://www.tsdm.me/home.php?mobile=yes&tsdmapp=1&mod=space&do=profile ");
             dynamic = JsonConvert.DeserializeObject<dynamic>(StreamToString());
+            stream.Flush();
         }
         public Stream VerifyCode()
         {
@@ -89,6 +113,7 @@ namespace WindowsFormsApp1
                 System.Windows.Forms.MessageBox.Show("登陆信息有误，请重试");
                 tf = false;
             }
+            stream.Flush();
         }
         public void PostContent(CookieContainer cookie, string url, string Body)
         {

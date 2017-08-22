@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.FourmButton = new System.Windows.Forms.Button();
-            this.ReplyShowButton = new System.Windows.Forms.Button();
-            this.UserLogShowButton = new System.Windows.Forms.Button();
-            this.UserInfoShowButton = new System.Windows.Forms.Button();
             this.userpanel = new System.Windows.Forms.Panel();
             this.UserinfoRenewButton = new System.Windows.Forms.Button();
             this.CheckButton = new System.Windows.Forms.Button();
@@ -59,24 +54,37 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.SubForumPanel = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
+            this.WebPanel = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.ReplyPanel = new System.Windows.Forms.Panel();
             this.ReplyButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.ReplyBody = new System.Windows.Forms.TextBox();
             this.tid = new System.Windows.Forms.TextBox();
-            this.SubForumPanel = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.WebButton = new System.Windows.Forms.Button();
+            this.SubForumBottun = new System.Windows.Forms.Button();
+            this.FourmButton = new System.Windows.Forms.Button();
+            this.ReplyShowButton = new System.Windows.Forms.Button();
+            this.UserLogShowButton = new System.Windows.Forms.Button();
+            this.UserInfoShowButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.userpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserAratar)).BeginInit();
             this.logpanel.SuspendLayout();
@@ -85,81 +93,33 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.ReplyPanel.SuspendLayout();
             this.SubForumPanel.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.WebPanel.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.ReplyPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AllowDrop = true;
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.userpanel);
             this.flowLayoutPanel1.Controls.Add(this.logpanel);
             this.flowLayoutPanel1.Controls.Add(this.FourmPanel);
             this.flowLayoutPanel1.Controls.Add(this.SubForumPanel);
+            this.flowLayoutPanel1.Controls.Add(this.WebPanel);
             this.flowLayoutPanel1.Controls.Add(this.ReplyPanel);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(101, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(736, 412);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(635, 412);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.FourmButton);
-            this.panel1.Controls.Add(this.ReplyShowButton);
-            this.panel1.Controls.Add(this.UserLogShowButton);
-            this.panel1.Controls.Add(this.UserInfoShowButton);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(95, 388);
-            this.panel1.TabIndex = 15;
-            // 
-            // FourmButton
-            // 
-            this.FourmButton.Location = new System.Drawing.Point(10, 99);
-            this.FourmButton.Name = "FourmButton";
-            this.FourmButton.Size = new System.Drawing.Size(75, 23);
-            this.FourmButton.TabIndex = 4;
-            this.FourmButton.Text = "论坛";
-            this.FourmButton.UseVisualStyleBackColor = true;
-            this.FourmButton.Click += new System.EventHandler(this.FourmButton_Click);
-            // 
-            // ReplyShowButton
-            // 
-            this.ReplyShowButton.Location = new System.Drawing.Point(9, 69);
-            this.ReplyShowButton.Name = "ReplyShowButton";
-            this.ReplyShowButton.Size = new System.Drawing.Size(75, 23);
-            this.ReplyShowButton.TabIndex = 3;
-            this.ReplyShowButton.Text = "回复";
-            this.ReplyShowButton.UseVisualStyleBackColor = true;
-            this.ReplyShowButton.Click += new System.EventHandler(this.ReplyShowButton_Click);
-            // 
-            // UserLogShowButton
-            // 
-            this.UserLogShowButton.Location = new System.Drawing.Point(9, 38);
-            this.UserLogShowButton.Name = "UserLogShowButton";
-            this.UserLogShowButton.Size = new System.Drawing.Size(75, 23);
-            this.UserLogShowButton.TabIndex = 1;
-            this.UserLogShowButton.Text = "登录/切换";
-            this.UserLogShowButton.UseVisualStyleBackColor = true;
-            this.UserLogShowButton.Click += new System.EventHandler(this.UserLogShowButton_Click);
-            // 
-            // UserInfoShowButton
-            // 
-            this.UserInfoShowButton.Location = new System.Drawing.Point(9, 9);
-            this.UserInfoShowButton.Name = "UserInfoShowButton";
-            this.UserInfoShowButton.Size = new System.Drawing.Size(75, 23);
-            this.UserInfoShowButton.TabIndex = 0;
-            this.UserInfoShowButton.Text = "用户信息";
-            this.UserInfoShowButton.UseVisualStyleBackColor = true;
-            this.UserInfoShowButton.Click += new System.EventHandler(this.UserInfoShowButton_Click);
             // 
             // userpanel
             // 
@@ -171,7 +131,8 @@
             this.userpanel.Controls.Add(this.UidLabel);
             this.userpanel.Controls.Add(this.label7);
             this.userpanel.Controls.Add(this.UsernameLabel);
-            this.userpanel.Location = new System.Drawing.Point(104, 3);
+            this.userpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userpanel.Location = new System.Drawing.Point(3, 3);
             this.userpanel.Name = "userpanel";
             this.userpanel.Size = new System.Drawing.Size(340, 388);
             this.userpanel.TabIndex = 13;
@@ -252,7 +213,7 @@
             this.logpanel.Controls.Add(this.label3);
             this.logpanel.Controls.Add(this.label2);
             this.logpanel.Controls.Add(this.label1);
-            this.logpanel.Location = new System.Drawing.Point(450, 3);
+            this.logpanel.Location = new System.Drawing.Point(349, 3);
             this.logpanel.Name = "logpanel";
             this.logpanel.Size = new System.Drawing.Size(340, 388);
             this.logpanel.TabIndex = 12;
@@ -352,7 +313,7 @@
             // 
             this.FourmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FourmPanel.Controls.Add(this.flowLayoutPanel2);
-            this.FourmPanel.Location = new System.Drawing.Point(796, 3);
+            this.FourmPanel.Location = new System.Drawing.Point(695, 3);
             this.FourmPanel.Name = "FourmPanel";
             this.FourmPanel.Size = new System.Drawing.Size(340, 388);
             this.FourmPanel.TabIndex = 16;
@@ -372,23 +333,23 @@
             this.panel2.Controls.Add(this.flowLayoutPanel3);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(332, 183);
+            this.panel2.Size = new System.Drawing.Size(332, 129);
             this.panel2.TabIndex = 0;
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Location = new System.Drawing.Point(-1, -1);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(332, 183);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(332, 129);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.flowLayoutPanel4);
-            this.panel3.Location = new System.Drawing.Point(3, 192);
+            this.panel3.Location = new System.Drawing.Point(3, 138);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(332, 193);
+            this.panel3.Size = new System.Drawing.Size(332, 245);
             this.panel3.TabIndex = 1;
             // 
             // flowLayoutPanel4
@@ -397,9 +358,183 @@
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(-1, -1);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(332, 193);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(332, 245);
             this.flowLayoutPanel4.TabIndex = 0;
             this.flowLayoutPanel4.WrapContents = false;
+            // 
+            // SubForumPanel
+            // 
+            this.SubForumPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SubForumPanel.Controls.Add(this.flowLayoutPanel5);
+            this.SubForumPanel.Location = new System.Drawing.Point(1041, 3);
+            this.SubForumPanel.Name = "SubForumPanel";
+            this.SubForumPanel.Size = new System.Drawing.Size(340, 388);
+            this.SubForumPanel.TabIndex = 17;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.panel5);
+            this.flowLayoutPanel5.Controls.Add(this.panel4);
+            this.flowLayoutPanel5.Controls.Add(this.panel6);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(340, 388);
+            this.flowLayoutPanel5.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.flowLayoutPanel6);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(332, 130);
+            this.panel5.TabIndex = 0;
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.AutoScroll = true;
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(-1, -1);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(332, 129);
+            this.flowLayoutPanel6.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Location = new System.Drawing.Point(3, 139);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(332, 46);
+            this.panel4.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(253, 15);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "跳转";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(84, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "下页";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(165, 15);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(82, 21);
+            this.textBox4.TabIndex = 1;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "上页";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.flowLayoutPanel7);
+            this.panel6.Location = new System.Drawing.Point(3, 191);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(332, 193);
+            this.panel6.TabIndex = 1;
+            // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.AutoScroll = true;
+            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(-1, -1);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(332, 193);
+            this.flowLayoutPanel7.TabIndex = 0;
+            this.flowLayoutPanel7.WrapContents = false;
+            // 
+            // WebPanel
+            // 
+            this.WebPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebPanel.Controls.Add(this.panel8);
+            this.WebPanel.Controls.Add(this.webBrowser1);
+            this.WebPanel.Location = new System.Drawing.Point(1387, 3);
+            this.WebPanel.Name = "WebPanel";
+            this.WebPanel.Size = new System.Drawing.Size(500, 388);
+            this.WebPanel.TabIndex = 18;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button4);
+            this.panel8.Controls.Add(this.button5);
+            this.panel8.Controls.Add(this.textBox5);
+            this.panel8.Controls.Add(this.button6);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 340);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(498, 46);
+            this.panel8.TabIndex = 3;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(253, 15);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "跳转";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(84, 14);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "下页";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(165, 15);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(82, 21);
+            this.textBox5.TabIndex = 1;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(3, 14);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "上页";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(498, 336);
+            this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
             // ReplyPanel
             // 
@@ -408,10 +543,11 @@
             this.ReplyPanel.Controls.Add(this.label6);
             this.ReplyPanel.Controls.Add(this.ReplyBody);
             this.ReplyPanel.Controls.Add(this.tid);
-            this.ReplyPanel.Location = new System.Drawing.Point(1488, 3);
+            this.ReplyPanel.Location = new System.Drawing.Point(1893, 3);
             this.ReplyPanel.Name = "ReplyPanel";
             this.ReplyPanel.Size = new System.Drawing.Size(340, 388);
             this.ReplyPanel.TabIndex = 14;
+            this.ReplyPanel.Visible = false;
             // 
             // ReplyButton
             // 
@@ -448,116 +584,91 @@
             this.tid.Size = new System.Drawing.Size(100, 21);
             this.tid.TabIndex = 0;
             // 
-            // SubForumPanel
+            // panel1
             // 
-            this.SubForumPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SubForumPanel.Controls.Add(this.flowLayoutPanel5);
-            this.SubForumPanel.Location = new System.Drawing.Point(1142, 3);
-            this.SubForumPanel.Name = "SubForumPanel";
-            this.SubForumPanel.Size = new System.Drawing.Size(340, 388);
-            this.SubForumPanel.TabIndex = 17;
+            this.panel1.Controls.Add(this.WebButton);
+            this.panel1.Controls.Add(this.SubForumBottun);
+            this.panel1.Controls.Add(this.FourmButton);
+            this.panel1.Controls.Add(this.ReplyShowButton);
+            this.panel1.Controls.Add(this.UserLogShowButton);
+            this.panel1.Controls.Add(this.UserInfoShowButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(95, 412);
+            this.panel1.TabIndex = 15;
             // 
-            // flowLayoutPanel5
+            // WebButton
             // 
-            this.flowLayoutPanel5.Controls.Add(this.panel5);
-            this.flowLayoutPanel5.Controls.Add(this.panel4);
-            this.flowLayoutPanel5.Controls.Add(this.panel6);
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(340, 388);
-            this.flowLayoutPanel5.TabIndex = 0;
+            this.WebButton.Location = new System.Drawing.Point(10, 158);
+            this.WebButton.Name = "WebButton";
+            this.WebButton.Size = new System.Drawing.Size(75, 23);
+            this.WebButton.TabIndex = 6;
+            this.WebButton.Text = "主题";
+            this.WebButton.UseVisualStyleBackColor = true;
+            this.WebButton.Click += new System.EventHandler(this.WebButton_Click);
             // 
-            // panel5
+            // SubForumBottun
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.flowLayoutPanel6);
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(332, 130);
-            this.panel5.TabIndex = 0;
+            this.SubForumBottun.Location = new System.Drawing.Point(10, 129);
+            this.SubForumBottun.Name = "SubForumBottun";
+            this.SubForumBottun.Size = new System.Drawing.Size(75, 23);
+            this.SubForumBottun.TabIndex = 5;
+            this.SubForumBottun.Text = "主题列表";
+            this.SubForumBottun.UseVisualStyleBackColor = true;
+            this.SubForumBottun.Click += new System.EventHandler(this.SubForumBottun_Click);
             // 
-            // flowLayoutPanel6
+            // FourmButton
             // 
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(-1, -1);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(332, 129);
-            this.flowLayoutPanel6.TabIndex = 0;
+            this.FourmButton.Location = new System.Drawing.Point(10, 99);
+            this.FourmButton.Name = "FourmButton";
+            this.FourmButton.Size = new System.Drawing.Size(75, 23);
+            this.FourmButton.TabIndex = 4;
+            this.FourmButton.Text = "板块列表";
+            this.FourmButton.UseVisualStyleBackColor = true;
+            this.FourmButton.Click += new System.EventHandler(this.FourmButton_Click);
             // 
-            // panel6
+            // ReplyShowButton
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.flowLayoutPanel7);
-            this.panel6.Location = new System.Drawing.Point(3, 191);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(332, 193);
-            this.panel6.TabIndex = 1;
+            this.ReplyShowButton.Location = new System.Drawing.Point(9, 69);
+            this.ReplyShowButton.Name = "ReplyShowButton";
+            this.ReplyShowButton.Size = new System.Drawing.Size(75, 23);
+            this.ReplyShowButton.TabIndex = 3;
+            this.ReplyShowButton.Text = "回复";
+            this.ReplyShowButton.UseVisualStyleBackColor = true;
+            this.ReplyShowButton.Click += new System.EventHandler(this.ReplyShowButton_Click);
             // 
-            // flowLayoutPanel7
+            // UserLogShowButton
             // 
-            this.flowLayoutPanel7.AutoScroll = true;
-            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(-1, -1);
-            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(332, 193);
-            this.flowLayoutPanel7.TabIndex = 0;
-            this.flowLayoutPanel7.WrapContents = false;
+            this.UserLogShowButton.Location = new System.Drawing.Point(9, 38);
+            this.UserLogShowButton.Name = "UserLogShowButton";
+            this.UserLogShowButton.Size = new System.Drawing.Size(75, 23);
+            this.UserLogShowButton.TabIndex = 1;
+            this.UserLogShowButton.Text = "登录/切换";
+            this.UserLogShowButton.UseVisualStyleBackColor = true;
+            this.UserLogShowButton.Click += new System.EventHandler(this.UserLogShowButton_Click);
             // 
-            // panel4
+            // UserInfoShowButton
             // 
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.textBox4);
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Location = new System.Drawing.Point(3, 139);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(332, 46);
-            this.panel4.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(165, 15);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(82, 21);
-            this.textBox4.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(84, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(253, 15);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.UserInfoShowButton.Location = new System.Drawing.Point(9, 9);
+            this.UserInfoShowButton.Name = "UserInfoShowButton";
+            this.UserInfoShowButton.Size = new System.Drawing.Size(75, 23);
+            this.UserInfoShowButton.TabIndex = 0;
+            this.UserInfoShowButton.Text = "用户信息";
+            this.UserInfoShowButton.UseVisualStyleBackColor = true;
+            this.UserInfoShowButton.Click += new System.EventHandler(this.UserInfoShowButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 412);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "TSDM .NET Client";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.userpanel.ResumeLayout(false);
             this.userpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserAratar)).EndInit();
@@ -568,14 +679,18 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.ReplyPanel.ResumeLayout(false);
-            this.ReplyPanel.PerformLayout();
             this.SubForumPanel.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.WebPanel.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.ReplyPanel.ResumeLayout(false);
+            this.ReplyPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -629,6 +744,15 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SubForumBottun;
+        private System.Windows.Forms.Button WebButton;
+        private System.Windows.Forms.Panel WebPanel;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
