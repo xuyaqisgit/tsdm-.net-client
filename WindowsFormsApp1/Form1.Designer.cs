@@ -30,6 +30,7 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.FourmButton = new System.Windows.Forms.Button();
             this.ReplyShowButton = new System.Windows.Forms.Button();
             this.UserLogShowButton = new System.Windows.Forms.Button();
             this.UserInfoShowButton = new System.Windows.Forms.Button();
@@ -63,7 +64,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ReplyBody = new System.Windows.Forms.TextBox();
             this.tid = new System.Windows.Forms.TextBox();
-            this.FourmButton = new System.Windows.Forms.Button();
+            this.SubForumPanel = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.userpanel.SuspendLayout();
@@ -75,6 +86,11 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.ReplyPanel.SuspendLayout();
+            this.SubForumPanel.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -85,6 +101,7 @@
             this.flowLayoutPanel1.Controls.Add(this.userpanel);
             this.flowLayoutPanel1.Controls.Add(this.logpanel);
             this.flowLayoutPanel1.Controls.Add(this.FourmPanel);
+            this.flowLayoutPanel1.Controls.Add(this.SubForumPanel);
             this.flowLayoutPanel1.Controls.Add(this.ReplyPanel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -103,6 +120,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(95, 388);
             this.panel1.TabIndex = 15;
+            // 
+            // FourmButton
+            // 
+            this.FourmButton.Location = new System.Drawing.Point(10, 99);
+            this.FourmButton.Name = "FourmButton";
+            this.FourmButton.Size = new System.Drawing.Size(75, 23);
+            this.FourmButton.TabIndex = 4;
+            this.FourmButton.Text = "论坛";
+            this.FourmButton.UseVisualStyleBackColor = true;
+            this.FourmButton.Click += new System.EventHandler(this.FourmButton_Click);
             // 
             // ReplyShowButton
             // 
@@ -381,7 +408,7 @@
             this.ReplyPanel.Controls.Add(this.label6);
             this.ReplyPanel.Controls.Add(this.ReplyBody);
             this.ReplyPanel.Controls.Add(this.tid);
-            this.ReplyPanel.Location = new System.Drawing.Point(1142, 3);
+            this.ReplyPanel.Location = new System.Drawing.Point(1488, 3);
             this.ReplyPanel.Name = "ReplyPanel";
             this.ReplyPanel.Size = new System.Drawing.Size(340, 388);
             this.ReplyPanel.TabIndex = 14;
@@ -421,15 +448,104 @@
             this.tid.Size = new System.Drawing.Size(100, 21);
             this.tid.TabIndex = 0;
             // 
-            // FourmButton
+            // SubForumPanel
             // 
-            this.FourmButton.Location = new System.Drawing.Point(10, 99);
-            this.FourmButton.Name = "FourmButton";
-            this.FourmButton.Size = new System.Drawing.Size(75, 23);
-            this.FourmButton.TabIndex = 4;
-            this.FourmButton.Text = "论坛";
-            this.FourmButton.UseVisualStyleBackColor = true;
-            this.FourmButton.Click += new System.EventHandler(this.FourmButton_Click);
+            this.SubForumPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SubForumPanel.Controls.Add(this.flowLayoutPanel5);
+            this.SubForumPanel.Location = new System.Drawing.Point(1142, 3);
+            this.SubForumPanel.Name = "SubForumPanel";
+            this.SubForumPanel.Size = new System.Drawing.Size(340, 388);
+            this.SubForumPanel.TabIndex = 17;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.panel5);
+            this.flowLayoutPanel5.Controls.Add(this.panel4);
+            this.flowLayoutPanel5.Controls.Add(this.panel6);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(340, 388);
+            this.flowLayoutPanel5.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.flowLayoutPanel6);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(332, 130);
+            this.panel5.TabIndex = 0;
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(-1, -1);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(332, 129);
+            this.flowLayoutPanel6.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.flowLayoutPanel7);
+            this.panel6.Location = new System.Drawing.Point(3, 191);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(332, 193);
+            this.panel6.TabIndex = 1;
+            // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.AutoScroll = true;
+            this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(-1, -1);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(332, 193);
+            this.flowLayoutPanel7.TabIndex = 0;
+            this.flowLayoutPanel7.WrapContents = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Location = new System.Drawing.Point(3, 139);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(332, 46);
+            this.panel4.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(165, 15);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(82, 21);
+            this.textBox4.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(84, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(253, 15);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -454,6 +570,12 @@
             this.panel3.ResumeLayout(false);
             this.ReplyPanel.ResumeLayout(false);
             this.ReplyPanel.PerformLayout();
+            this.SubForumPanel.ResumeLayout(false);
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -496,6 +618,17 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.Button FourmButton;
+        private System.Windows.Forms.Panel SubForumPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel7;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button1;
     }
 }
 

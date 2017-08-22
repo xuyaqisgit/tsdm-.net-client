@@ -38,18 +38,16 @@ namespace WindowsFormsApp1
                 logpanel.Visible = true;
                 VerifyImage.Image = Image.FromStream(tsdmVisit.VerifyCode());
             }
-            int i = 0;
             tsdmVisit.GetForum("");
             foreach (var str in tsdmVisit.dynamic.group)
             {
                 Button btn = new Button
                 {
-                    Name = "btn" + i.ToString()
+                    Name = "btn" + str.gid.ToString()
                     , Text = str.title.ToString()
                     , AutoSize = true
                     , Tag = str.gid.ToString()
                 };
-                i++;
                 btn.Click += GroupButton_Click;
                 flowLayoutPanel3.Controls.Add(btn);
             }
@@ -128,14 +126,13 @@ namespace WindowsFormsApp1
         private void GroupButton_Click(object sender, EventArgs e)
         {
             flowLayoutPanel4.Controls.Clear();
-                        Button button = sender as Button;
+            Button button = sender as Button;
             tsdmVisit.GetForum(button.Tag.ToString());
-            int i = 0;
             foreach (var str in tsdmVisit.dynamic.forum)
             {
                 Label label = new Label
                 {
-                    Name = "btn" + i.ToString()
+                    Name = "btn" + str.fid.ToString()
                     ,
                     Text = str.title.ToString() + "\n" + "今天更新:" + str.todaypost.ToString()
                     ,
@@ -146,16 +143,76 @@ namespace WindowsFormsApp1
                     BorderStyle = BorderStyle.FixedSingle
 
                 };
-                i++;
                 label.Click += GroupLabel_Click;
                 flowLayoutPanel4.Controls.Add(label);
             }
         }
+        private void SubGroupButton_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel7.Controls.Clear();
+            Button button = sender as Button;
+            tsdmVisit.GetForum(button.Tag.ToString(),"1");
+            foreach (var str in tsdmVisit.dynamic.thread)
+            {
+                Label label = new Label
+                {
+                    Name = "Label" + str.tid.ToString()
+                    ,
+                    Text = str.title.ToString()
+                    ,
+                    AutoSize = true
+                    ,
+                    Tag = str.tid.ToString()
+                    ,
+                    BorderStyle = BorderStyle.FixedSingle
+
+                };
+                label.Click += SubGroupLabel_Click;
+                flowLayoutPanel7.Controls.Add(label);
+            }
+        }
         private void GroupLabel_Click(object sender, EventArgs e)
         {
+            Label label = sender as Label;
+            flowLayoutPanel6.Controls.Clear();
+            flowLayoutPanel7.Controls.Clear();
+            tsdmVisit.GetForum(label.Tag.ToString(),"1");
+            foreach (var str in tsdmVisit.dynamic.subforum)
+            {
+                Button btn = new Button
+                {
+                    Name = "btn" + str.fid.ToString()
+                    , Text = str.name.ToString()
+                    , AutoSize = true
+                    , Tag = str.fid.ToString()
+                };
+                btn.Click += SubGroupButton_Click;
+                flowLayoutPanel6.Controls.Add(btn);
+            }
+            foreach (var str in tsdmVisit.dynamic.thread)
+            {
+                Label lab = new Label
+                {
+                    Name = "Label" + str.tid.ToString()
+                    ,
+                    Text = str.title.ToString()
+                    ,
+                    AutoSize = true
+                    ,
+                    Tag = str.tid.ToString()
+                    ,
+                    BorderStyle = BorderStyle.FixedSingle
 
+                };
+                label.Click += GroupLabel_Click;
+                flowLayoutPanel7.Controls.Add(lab);
+            }
         }
 
+        private void SubGroupLabel_Click(object sender, EventArgs e)
+        {
+            Label laber = sender as Label;
+        }
         private void FourmButton_Click(object sender, EventArgs e)
         {
             FourmPanel.Visible = !FourmPanel.Visible;
