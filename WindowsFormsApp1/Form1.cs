@@ -101,7 +101,6 @@ namespace WindowsFormsApp1
             tsdmVisit.Reply(tid.Text, ReplyBody.Text);
             if (tsdmVisit.tf)
             {
-                tid.Clear();
                 ReplyBody.Clear();
             }
 

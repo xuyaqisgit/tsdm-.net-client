@@ -73,7 +73,7 @@ namespace WindowsFormsApp1
             GetContent(cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid={0}", tid));
             var GetResult = JsonConvert.DeserializeObject<dynamic>(StreamToString());
             formhash = GetResult.formhash;
-            PostContent(cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&replysubmit=yes", String.Format("message={0}&formhash={1}&clienthash=DC0EEB7B38AA1F07AF76895A8E14747B&tid={2}&", body, GetResult.formhash, tid));
+            PostContent(cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=2&mod=post&action=reply&replysubmit=yes", String.Format("message={0}&formhash={1}&clienthash=DC0EEB7B38AA1F07AF76895A8E14747B&tid={2}&", body, GetResult.formhash, tid));
             var ReplyResult = JsonConvert.DeserializeObject<dynamic>(StreamToString());
             if (ReplyResult.message == "post_reply_succeed")
             {
