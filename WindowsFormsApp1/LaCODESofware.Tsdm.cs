@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LaCODESoftware.Tsdm
@@ -29,7 +30,14 @@ namespace LaCODESoftware.Tsdm
         public async Task<string> SreachAsync(string body)
         {
             Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/plugin.php?id=Kahrpba:search&query={0}&mobile=yes", body));
-            return StreamHelper.StreamToString(tuple.Item1);
+            MatchCollection matchCollection = Regex.Matches(StreamHelper.StreamToString(tuple.Item1),"<div class=\"ts_se_rs\">*<div>");
+            string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" /></head>";
+            string post = "";
+            foreach (var item in matchCollection)
+            {
+                post += item;
+            }
+            return head + post;
         }
         /// <summary>
         /// 主题购买
