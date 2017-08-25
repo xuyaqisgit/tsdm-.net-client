@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace LaCODESoftware.Tsdm
 {
     partial class Form1
     {
@@ -30,12 +30,11 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.userpanel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.UserinfoRenewButton = new System.Windows.Forms.Button();
             this.CheckButton = new System.Windows.Forms.Button();
             this.UserAratar = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.UidLabel = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.logpanel = new System.Windows.Forms.Panel();
             this.LogButton = new System.Windows.Forms.Button();
@@ -124,12 +123,11 @@
             // userpanel
             // 
             this.userpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.userpanel.Controls.Add(this.label8);
             this.userpanel.Controls.Add(this.UserinfoRenewButton);
             this.userpanel.Controls.Add(this.CheckButton);
             this.userpanel.Controls.Add(this.UserAratar);
-            this.userpanel.Controls.Add(this.label5);
             this.userpanel.Controls.Add(this.UidLabel);
-            this.userpanel.Controls.Add(this.label7);
             this.userpanel.Controls.Add(this.UsernameLabel);
             this.userpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userpanel.Location = new System.Drawing.Point(3, 3);
@@ -137,25 +135,33 @@
             this.userpanel.Size = new System.Drawing.Size(340, 388);
             this.userpanel.TabIndex = 13;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(60, 191);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 12);
+            this.label8.TabIndex = 13;
+            // 
             // UserinfoRenewButton
             // 
-            this.UserinfoRenewButton.Location = new System.Drawing.Point(171, 254);
+            this.UserinfoRenewButton.Location = new System.Drawing.Point(170, 290);
             this.UserinfoRenewButton.Name = "UserinfoRenewButton";
             this.UserinfoRenewButton.Size = new System.Drawing.Size(75, 23);
             this.UserinfoRenewButton.TabIndex = 12;
             this.UserinfoRenewButton.Text = "刷新";
             this.UserinfoRenewButton.UseVisualStyleBackColor = true;
-            this.UserinfoRenewButton.Click += new System.EventHandler(this.UserinfoRenewButton_Click);
+            this.UserinfoRenewButton.Click += new System.EventHandler(this.UserinfoRenewButton_ClickAsync);
             // 
             // CheckButton
             // 
-            this.CheckButton.Location = new System.Drawing.Point(62, 254);
+            this.CheckButton.Location = new System.Drawing.Point(62, 290);
             this.CheckButton.Name = "CheckButton";
             this.CheckButton.Size = new System.Drawing.Size(75, 23);
             this.CheckButton.TabIndex = 9;
             this.CheckButton.Text = "签到";
             this.CheckButton.UseVisualStyleBackColor = true;
-            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_ClickAsync);
             // 
             // UserAratar
             // 
@@ -166,36 +172,18 @@
             this.UserAratar.TabIndex = 8;
             this.UserAratar.TabStop = false;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 158);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 12);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "uid";
-            // 
             // UidLabel
             // 
             this.UidLabel.AutoSize = true;
-            this.UidLabel.Location = new System.Drawing.Point(87, 158);
+            this.UidLabel.Location = new System.Drawing.Point(60, 157);
             this.UidLabel.Name = "UidLabel";
             this.UidLabel.Size = new System.Drawing.Size(0, 12);
             this.UidLabel.TabIndex = 2;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(40, 173);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 12);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "用户名";
-            // 
             // UsernameLabel
             // 
             this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Location = new System.Drawing.Point(87, 173);
+            this.UsernameLabel.Location = new System.Drawing.Point(60, 172);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(0, 12);
             this.UsernameLabel.TabIndex = 0;
@@ -227,17 +215,17 @@
             this.LogButton.TabIndex = 9;
             this.LogButton.Text = "登录";
             this.LogButton.UseVisualStyleBackColor = true;
-            this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
+            this.LogButton.Click += new System.EventHandler(this.LogButton_ClickAsync);
             // 
             // VerifyImage
             // 
             this.VerifyImage.ImageLocation = "";
-            this.VerifyImage.Location = new System.Drawing.Point(6, 173);
+            this.VerifyImage.Location = new System.Drawing.Point(3, 421);
             this.VerifyImage.Name = "VerifyImage";
             this.VerifyImage.Size = new System.Drawing.Size(321, 140);
             this.VerifyImage.TabIndex = 8;
             this.VerifyImage.TabStop = false;
-            this.VerifyImage.Click += new System.EventHandler(this.VerifyImage_Click);
+            this.VerifyImage.Click += new System.EventHandler(this.VerifyImage_ClickAsync);
             // 
             // label4
             // 
@@ -417,7 +405,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "跳转";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_ClickAsync);
             // 
             // button2
             // 
@@ -427,7 +415,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "下页";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_ClickAsync);
             // 
             // textBox4
             // 
@@ -435,7 +423,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(82, 21);
             this.textBox4.TabIndex = 1;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
             // button1
             // 
@@ -445,7 +433,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "上页";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_ClickAsync);
             // 
             // panel6
             // 
@@ -496,7 +484,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "跳转";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button5
             // 
@@ -506,7 +494,7 @@
             this.button5.TabIndex = 2;
             this.button5.Text = "下页";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // textBox5
             // 
@@ -514,7 +502,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(82, 21);
             this.textBox5.TabIndex = 1;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox5_KeyPress);
             // 
             // button6
             // 
@@ -524,7 +512,7 @@
             this.button6.TabIndex = 0;
             this.button6.Text = "上页";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // webBrowser1
             // 
@@ -534,7 +522,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(498, 336);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser1_NavigatingAsync);
             // 
             // ReplyPanel
             // 
@@ -557,7 +545,7 @@
             this.ReplyButton.TabIndex = 3;
             this.ReplyButton.Text = "回复";
             this.ReplyButton.UseVisualStyleBackColor = true;
-            this.ReplyButton.Click += new System.EventHandler(this.ReplyButton_Click);
+            this.ReplyButton.Click += new System.EventHandler(this.ReplyButton_ClickAsync);
             // 
             // label6
             // 
@@ -646,7 +634,7 @@
             this.UserLogShowButton.TabIndex = 1;
             this.UserLogShowButton.Text = "登录/切换";
             this.UserLogShowButton.UseVisualStyleBackColor = true;
-            this.UserLogShowButton.Click += new System.EventHandler(this.UserLogShowButton_Click);
+            this.UserLogShowButton.Click += new System.EventHandler(this.UserLogShowButton_ClickAsync);
             // 
             // UserInfoShowButton
             // 
@@ -667,7 +655,8 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "TSDM .NET Client";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_LoadAsync);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.userpanel.ResumeLayout(false);
             this.userpanel.PerformLayout();
@@ -701,9 +690,7 @@
         private System.Windows.Forms.Panel userpanel;
         private System.Windows.Forms.Button CheckButton;
         private System.Windows.Forms.PictureBox UserAratar;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label UidLabel;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Panel logpanel;
         private System.Windows.Forms.Button LogButton;
@@ -753,6 +740,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label8;
     }
 }
 
