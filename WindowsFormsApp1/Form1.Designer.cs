@@ -47,6 +47,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.SearchPanel = new System.Windows.Forms.Panel();
+            this.webBrowser2 = new System.Windows.Forms.WebBrowser();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.FourmPanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -77,17 +87,22 @@
             this.ReplyBody = new System.Windows.Forms.TextBox();
             this.tid = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SearchShowButton = new System.Windows.Forms.Button();
             this.WebButton = new System.Windows.Forms.Button();
             this.SubForumBottun = new System.Windows.Forms.Button();
             this.FourmButton = new System.Windows.Forms.Button();
             this.ReplyShowButton = new System.Windows.Forms.Button();
             this.UserLogShowButton = new System.Windows.Forms.Button();
             this.UserInfoShowButton = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.userpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserAratar)).BeginInit();
             this.logpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerifyImage)).BeginInit();
+            this.SearchPanel.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.FourmPanel.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -111,12 +126,13 @@
             this.flowLayoutPanel1.Controls.Add(this.logpanel);
             this.flowLayoutPanel1.Controls.Add(this.FourmPanel);
             this.flowLayoutPanel1.Controls.Add(this.SubForumPanel);
+            this.flowLayoutPanel1.Controls.Add(this.SearchPanel);
             this.flowLayoutPanel1.Controls.Add(this.WebPanel);
             this.flowLayoutPanel1.Controls.Add(this.ReplyPanel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(101, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(635, 412);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(741, 412);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -297,6 +313,102 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "登录方式";
             // 
+            // SearchPanel
+            // 
+            this.SearchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchPanel.Controls.Add(this.webBrowser2);
+            this.SearchPanel.Controls.Add(this.panel7);
+            this.SearchPanel.Controls.Add(this.panel9);
+            this.SearchPanel.Location = new System.Drawing.Point(1387, 3);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(400, 388);
+            this.SearchPanel.TabIndex = 19;
+            this.SearchPanel.Visible = false;
+            // 
+            // webBrowser2
+            // 
+            this.webBrowser2.Location = new System.Drawing.Point(-1, 46);
+            this.webBrowser2.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser2.Name = "webBrowser2";
+            this.webBrowser2.Size = new System.Drawing.Size(400, 302);
+            this.webBrowser2.TabIndex = 5;
+            this.webBrowser2.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser2_NavigatingAsync);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.SearchButton);
+            this.panel7.Controls.Add(this.textBox7);
+            this.panel7.Location = new System.Drawing.Point(3, 2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(396, 46);
+            this.panel7.TabIndex = 4;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Location = new System.Drawing.Point(253, 15);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 3;
+            this.SearchButton.Text = "搜索";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_ClickAsync);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(4, 15);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(243, 21);
+            this.textBox7.TabIndex = 1;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.button7);
+            this.panel9.Controls.Add(this.button8);
+            this.panel9.Controls.Add(this.textBox6);
+            this.panel9.Controls.Add(this.button9);
+            this.panel9.Location = new System.Drawing.Point(4, 339);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(391, 46);
+            this.panel9.TabIndex = 3;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(253, 15);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "跳转";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_ClickAsync);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(84, 14);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "下页";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_ClickAsync);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(165, 15);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(82, 21);
+            this.textBox6.TabIndex = 1;
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(3, 14);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "上页";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_ClickAsync);
+            // 
             // FourmPanel
             // 
             this.FourmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -459,13 +571,14 @@
             this.WebPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.WebPanel.Controls.Add(this.panel8);
             this.WebPanel.Controls.Add(this.webBrowser1);
-            this.WebPanel.Location = new System.Drawing.Point(1387, 3);
+            this.WebPanel.Location = new System.Drawing.Point(1793, 3);
             this.WebPanel.Name = "WebPanel";
             this.WebPanel.Size = new System.Drawing.Size(500, 388);
             this.WebPanel.TabIndex = 18;
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.button10);
             this.panel8.Controls.Add(this.button4);
             this.panel8.Controls.Add(this.button5);
             this.panel8.Controls.Add(this.textBox5);
@@ -502,7 +615,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(82, 21);
             this.textBox5.TabIndex = 1;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox5_KeyPress);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
             // button6
             // 
@@ -531,7 +644,7 @@
             this.ReplyPanel.Controls.Add(this.label6);
             this.ReplyPanel.Controls.Add(this.ReplyBody);
             this.ReplyPanel.Controls.Add(this.tid);
-            this.ReplyPanel.Location = new System.Drawing.Point(1893, 3);
+            this.ReplyPanel.Location = new System.Drawing.Point(2299, 3);
             this.ReplyPanel.Name = "ReplyPanel";
             this.ReplyPanel.Size = new System.Drawing.Size(340, 388);
             this.ReplyPanel.TabIndex = 14;
@@ -574,6 +687,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.SearchShowButton);
             this.panel1.Controls.Add(this.WebButton);
             this.panel1.Controls.Add(this.SubForumBottun);
             this.panel1.Controls.Add(this.FourmButton);
@@ -585,6 +699,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(95, 412);
             this.panel1.TabIndex = 15;
+            // 
+            // SearchShowButton
+            // 
+            this.SearchShowButton.Location = new System.Drawing.Point(10, 187);
+            this.SearchShowButton.Name = "SearchShowButton";
+            this.SearchShowButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchShowButton.TabIndex = 7;
+            this.SearchShowButton.Text = "搜索";
+            this.SearchShowButton.UseVisualStyleBackColor = true;
+            this.SearchShowButton.Click += new System.EventHandler(this.SearchShowButton_Click);
             // 
             // WebButton
             // 
@@ -646,11 +770,21 @@
             this.UserInfoShowButton.UseVisualStyleBackColor = true;
             this.UserInfoShowButton.Click += new System.EventHandler(this.UserInfoShowButton_Click);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(334, 15);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 4;
+            this.button10.Text = "分享";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 412);
+            this.ClientSize = new System.Drawing.Size(842, 412);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
@@ -664,6 +798,11 @@
             this.logpanel.ResumeLayout(false);
             this.logpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerifyImage)).EndInit();
+            this.SearchPanel.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.FourmPanel.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -741,6 +880,18 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel SearchPanel;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.WebBrowser webBrowser2;
+        private System.Windows.Forms.Button SearchShowButton;
+        private System.Windows.Forms.Button button10;
     }
 }
 

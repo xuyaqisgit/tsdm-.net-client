@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LaCODESoftware.Tsdm
@@ -27,17 +26,20 @@ namespace LaCODESoftware.Tsdm
         /// </summary>
         /// <param name="body">内容</param>
         /// <returns>返回搜索所得到的字符串形式html</returns>
-        public async Task<string> SreachAsync(string body)
+        public async Task<string> SreachAsync(string body,string page)
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/plugin.php?id=Kahrpba:search&query={0}&mobile=yes", body));
-            MatchCollection matchCollection = Regex.Matches(StreamHelper.StreamToString(tuple.Item1),"<div class=\"ts_se_rs\">*<div>");
-            string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" /></head>";
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/plugin.php?id=Kahrpba:search&query={0}&mobile=yes&page={1}", body,page));
+            string[] temp = StreamHelper.StreamToString(tuple.Item1).Split('\n');
+            string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" />" +
+                "<style>.ts_se_rs {width:600px;overflow:hidden;margin-bottom: 23px;}.r_ a{cursor: pointer;color: #1a0dab;font-size: medium;}.r_ a em{color: #FF0000;}.a_ {}.a_ a {color: #006621;font-size: 13px;}.dateshow {color: #808080;}" +
+                "#otherSE li span{margin-left:10px;}#otherSE li a {font-weight: bold;}#otherSE {margin-top:20px;}.sel {color:#FF0000}.setur {color:#0000FF;margin-left:10px}.otip {color:#669900}* {word-wrap: break-word;}body {width:290;}" +
+                "</style></head><body>";
             string post = "";
-            foreach (var item in matchCollection)
+            for (int i = 283; i < temp.Length-41; i++)
             {
-                post += item;
+                post += temp[i];
             }
-            return head + post;
+            return head + post.Replace(" target=\"_blank\"", "") + "</body></html>";
         }
         /// <summary>
         /// 主题购买

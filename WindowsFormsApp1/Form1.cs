@@ -13,6 +13,8 @@ namespace LaCODESoftware.Tsdm
         private string fid;
         private string fpage;
         private string tpage;
+        private string spage;
+        private string uid;
 
         public Form1()
         {
@@ -27,6 +29,7 @@ namespace LaCODESoftware.Tsdm
                 Json json = await tsdmHelper.UserInfoAsync();
                 UsernameLabel.Text = "用户名:" + json.username;
                 UidLabel.Text = "Uid:" + json.uid;
+                uid = json.uid;
                 label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
                 UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
             }
@@ -68,6 +71,7 @@ namespace LaCODESoftware.Tsdm
                 StreamHelper.WriteCookiesToDisk("cookie", tsdmHelper.Cookie);
                 UsernameLabel.Text = "用户名:" + json.username;
                 UidLabel.Text = "Uid:" + json.uid;
+                uid = json.uid;
                 UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
                 label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
             }
@@ -166,24 +170,7 @@ namespace LaCODESoftware.Tsdm
             }
             else
             {
-                foreach (var str in json.thread)
-                {
-                    Label label = new Label
-                    {
-                        Name = "Label" + str.tid.ToString()
-                        ,
-                        Text = str.title.ToString()
-                        ,
-                        AutoSize = true
-                        ,
-                        Tag = str.tid.ToString()
-                        ,
-                        BorderStyle = BorderStyle.FixedSingle
-
-                    };
-                    label.Click += SubGroupLabel_Click;
-                    flowLayoutPanel7.Controls.Add(label);
-                }
+                SubForumAdd(json);
                 fpage = "1";
                 fid = button.Tag.ToString();
             }
@@ -210,24 +197,7 @@ namespace LaCODESoftware.Tsdm
                 btn.Click += SubGroupButton_ClickAsync;
                 flowLayoutPanel6.Controls.Add(btn);
             }
-            foreach (var str in json.thread)
-            {
-                Label lab = new Label
-                {
-                    Name = "Label" + str.tid.ToString()
-                    ,
-                    Text = str.title.ToString()
-                    ,
-                    AutoSize = true
-                    ,
-                    Tag = str.tid.ToString()
-                    ,
-                    BorderStyle = BorderStyle.FixedSingle
-
-                };
-                lab.Click += SubGroupLabel_Click;
-                flowLayoutPanel7.Controls.Add(lab);
-            }
+            SubForumAdd(json);
             fpage = "1";
             fid = label.Tag.ToString();
 
@@ -265,24 +235,7 @@ namespace LaCODESoftware.Tsdm
                 fpage = intfpage.ToString();
                 flowLayoutPanel7.Controls.Clear();
                 Json json = await tsdmHelper.GetForumAsync(fid, fpage);
-                foreach (var str in json.thread)
-                {
-                    Label lab = new Label
-                    {
-                        Name = "Label" + str.tid.ToString()
-                        ,
-                        Text = str.title.ToString()
-                        ,
-                        AutoSize = true
-                        ,
-                        Tag = str.tid.ToString()
-                        ,
-                        BorderStyle = BorderStyle.FixedSingle
-
-                    };
-                    lab.Click += SubGroupLabel_Click;
-                    flowLayoutPanel7.Controls.Add(lab);
-                }
+                SubForumAdd(json);
             }
         }
 
@@ -293,38 +246,10 @@ namespace LaCODESoftware.Tsdm
             fpage = intfpage.ToString();
             flowLayoutPanel7.Controls.Clear();
             Json json = await tsdmHelper.GetForumAsync(fid, fpage);
-            foreach (var str in json.thread)
-            {
-                Label lab = new Label
-                {
-                    Name = "Label" + str.tid.ToString()
-                    ,
-                    Text = str.title.ToString()
-                    ,
-                    AutoSize = true
-                    ,
-                    Tag = str.tid.ToString()
-                    ,
-                    BorderStyle = BorderStyle.FixedSingle
-
-                };
-                lab.Click += SubGroupLabel_Click;
-                flowLayoutPanel7.Controls.Add(lab);
-            }
+            SubForumAdd(json);
         }
 
         private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != '\b')
-            {
-                if ((e.KeyChar < '0') || (e.KeyChar > '9'))
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void TextBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != '\b')
             {
@@ -340,24 +265,7 @@ namespace LaCODESoftware.Tsdm
             fpage = textBox4.Text.ToString();
             flowLayoutPanel7.Controls.Clear();
             Json json = await tsdmHelper.GetForumAsync(fid, fpage);
-            foreach (var str in json.thread)
-            {
-                Label lab = new Label
-                {
-                    Name = "Label" + str.tid.ToString()
-                    ,
-                    Text = str.title.ToString()
-                    ,
-                    AutoSize = true
-                    ,
-                    Tag = str.tid.ToString()
-                    ,
-                    BorderStyle = BorderStyle.FixedSingle
-
-                };
-                lab.Click += SubGroupLabel_Click;
-                flowLayoutPanel7.Controls.Add(lab);
-            }
+            SubForumAdd(json);
         }
 
         private async void WebBrowser1_NavigatingAsync(object sender, WebBrowserNavigatingEventArgs e)
@@ -424,6 +332,93 @@ namespace LaCODESoftware.Tsdm
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             StreamHelper.WriteCookiesToDisk("cookie", tsdmHelper.Cookie);
+        }
+
+        private void SubForumAdd(Json json)
+        {
+            foreach (var str in json.thread)
+            {
+                Label lab = new Label
+                {
+                    Name = "Label" + str.tid.ToString()
+                    ,
+                    Text = str.title.ToString()
+                    ,
+                    AutoSize = true
+                    ,
+                    Tag = str.tid.ToString()
+                    ,
+                    BorderStyle = BorderStyle.FixedSingle
+                    ,
+                    MaximumSize = new Size(293, 50)
+                };
+                lab.Click += SubGroupLabel_Click;
+                flowLayoutPanel7.Controls.Add(lab);
+            }
+        }
+
+        private async void SearchButton_ClickAsync(object sender, EventArgs e)
+        {
+            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text,"1");
+            spage = "1";
+        }
+
+        private async void Button9_ClickAsync(object sender, EventArgs e)
+        {
+            int intspage = int.Parse(spage);
+            if (intspage > 1)
+            {
+                intspage--;
+                spage = intspage.ToString();
+                webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+            }
+        }
+
+        private async void Button8_ClickAsync(object sender, EventArgs e)
+        {
+            int intspage = int.Parse(spage);
+            intspage++;
+            spage = intspage.ToString();
+            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+        }
+
+        private async void Button7_ClickAsync(object sender, EventArgs e)
+        {
+            spage = textBox7.Text;
+            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+        }
+
+        private void SearchShowButton_Click(object sender, EventArgs e)
+        {
+            SearchPanel.Visible = !SearchPanel.Visible;
+        }
+
+        private async void WebBrowser2_NavigatingAsync(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (e.Url.Host.Contains("www.tsdm.me") || e.Url.Host.Contains("forum.php") || e.Url.Host.Contains("www.tsdm.net"))
+            {
+                e.Cancel = true;
+                MatchCollection matchCollection = Regex.Matches(e.Url.ToString(), @"\b\d+\b");
+                tid.Text = matchCollection[0].ToString();
+                if (matchCollection.Count > 1)
+                {
+                    tpage = matchCollection[1].ToString();
+                }
+                else
+                {
+                    tpage = "1";
+                }
+                webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+            }
+            else
+            {
+                    
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&fromuid={1}",tid.Text,uid));
         }
     }
 }
