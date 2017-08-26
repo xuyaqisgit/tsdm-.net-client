@@ -70,6 +70,9 @@
     <ManifestTimestampUrl>
     </ManifestTimestampUrl>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -141,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HTMLPage1.html" />
+    <Content Include="icon.ico" />
     <Content Include="WebStyle.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
