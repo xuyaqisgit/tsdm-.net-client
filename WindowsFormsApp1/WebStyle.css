@@ -1,0 +1,23 @@
+﻿.user {
+    width: 30%;
+}
+
+.avatar {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.main {
+    width: 70%;
+}
+
+.body {
+    word-wrap: break-word;
+}
+
+    .body > img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }

@@ -3,8 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <style type="text/css">
+        .user{
+            width: 30%;
+        }
+        .avatar{
+            max-width:90%;
+            max-height: 90%;
+        }
+        .main{
+            width:70%;
+        }
+        .body{
+            word-wrap:break-word;
+        }
+            .body > img {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
+    </style>
 </head>
-<body>
 
+<body>
+    <table><tbody><tr><td class="user"><div><div><img class="avatar" src="{0}" onerror="this.onerror =null;this.src =\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td class="main"><div><div><table><tbody><tr><td class="body">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />
 </body>
 </html>
