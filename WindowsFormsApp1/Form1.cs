@@ -367,8 +367,8 @@ namespace LaCODESoftware.Tsdm
                 e.Cancel = true;
                 if (e.Url.ToString() == "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes")
                 {
-                    tsdmHelper.PayAsync(tid.Text);
-                    webBrowser1.Refresh();
+                    await tsdmHelper.PayAsync(tid.Text);
+                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
                 }
                 else
                 {

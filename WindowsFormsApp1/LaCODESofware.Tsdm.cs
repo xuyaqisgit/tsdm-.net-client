@@ -35,13 +35,12 @@ namespace LaCODESoftware.Tsdm
         /// 主题购买
         /// </summary>
         /// <param name="tid">帖子代码</param>
-        public async void PayAsync(string tid)
+        public async Task PayAsync(string tid)
         {
             Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid=628244");
             Json json = JsonHelper.DataContractJsonDeserialize<Json>(tuple.Item1);
             string formhash = json.formhash;
             await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes", String.Format("formhash={0}&referer=http://www.tsdm.me/./&tid={1}&paysubmit=true", formhash, tid));
-            await WebHelper.GetStreamAsync(Cookie, String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&mobile=yes", tid));
         }
         /// <summary>
         /// 获取帖子内容
@@ -52,7 +51,12 @@ namespace LaCODESoftware.Tsdm
         public async Task<string> GetThreadAsync(string tid, string page)
         {
             Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/forum.php?mod=viewthread&mobile=yes&tsdmapp=1&tid={0}&page={1} ", tid, page));
-            Json json = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1).Replace("\n", "").Replace("\r", ""));
+            string result = StreamHelper.StreamToString(tuple.Item1).Replace("\n", "").Replace("\r", "");
+            if (result.Contains("<?xml") == true)
+            {
+                return "xml_cannot_deserialize";
+            }
+            Json json = JsonHelper.DataContractJsonDeserialize<Json>(result);
             _Cookie = tuple.Item2;
             if (json.status == "-1")
             {
@@ -60,7 +64,9 @@ namespace LaCODESoftware.Tsdm
             }
             else
             {
-                string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" /></head>";
+                string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>" +
+                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" />" +
+                    "<style type=\"text/css\">.user{width:138px;} .avatar{max-width:110px;max-height:95px;} .main{width:321px;}.body{word-wrap:break-word;} .body>img{width:auto;height:auto;max-width:100%;max-height:100%;}</style></head>";
                 string post = "";
                 if (json.thread_price != null && json.thread_paid == "0")
                 {
@@ -68,9 +74,9 @@ namespace LaCODESoftware.Tsdm
                 }
                 foreach (var item in json.postlist)
                 {
-                    post += String.Format("<table><tbody><tr><td width=\"20%\"><div><div><img src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td width=\"80%\"><div><div><table><tbody><tr><td>{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
+                    post += String.Format("<table><tbody><tr><td class=\"user\"><div><div><img class=\"avatar\" src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td class=\"main\"><div><div><table><tbody><tr><td class=\"body\">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
                 }
-                return (head + "<body>" + post.Replace(" target=\"_blank\"", "") + "</body></html>").Replace("<img", "<img width=\"60%\" heigh=\"60%\"");
+                return head + "<body>" + post.Replace(" target=\"_blank\"", "") + "</body></html>";
             }
         }
         /// <summary>
