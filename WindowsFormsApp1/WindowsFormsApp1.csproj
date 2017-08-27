@@ -26,7 +26,7 @@
     <PublisherName>天使动漫%40许亚奇567</PublisherName>
     <SuiteName>天使动漫论坛.NET客户端</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.5.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.7.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -98,12 +98,21 @@
     </Compile>
     <None Include="bin\Debug\cookie" />
     <None Include="Form1VM.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="LaCODESoftware.BasicHelper.cs" />
     <Compile Include="LaCODESofware.Tsdm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -143,6 +152,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="about.jpg" />
     <Content Include="HTMLPage1.html" />
     <Content Include="icon.ico" />
     <Content Include="WebStyle.css" />

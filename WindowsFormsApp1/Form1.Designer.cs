@@ -89,6 +89,7 @@
             this.ReplyBody = new System.Windows.Forms.TextBox();
             this.tid = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.AboutButton = new System.Windows.Forms.Button();
             this.SearchShowButton = new System.Windows.Forms.Button();
             this.WebButton = new System.Windows.Forms.Button();
             this.SubForumBottun = new System.Windows.Forms.Button();
@@ -698,6 +699,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.AboutButton);
             this.panel1.Controls.Add(this.SearchShowButton);
             this.panel1.Controls.Add(this.WebButton);
             this.panel1.Controls.Add(this.SubForumBottun);
@@ -710,6 +712,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(95, 412);
             this.panel1.TabIndex = 15;
+            // 
+            // AboutButton
+            // 
+            this.AboutButton.Location = new System.Drawing.Point(9, 216);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(75, 23);
+            this.AboutButton.TabIndex = 8;
+            this.AboutButton.Text = "关于";
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // SearchShowButton
             // 
@@ -894,6 +906,7 @@
         private System.Windows.Forms.WebBrowser webBrowser2;
         private System.Windows.Forms.Button SearchShowButton;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
 

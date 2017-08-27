@@ -420,5 +420,11 @@ namespace LaCODESoftware.Tsdm
         {
             Clipboard.SetText(String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&fromuid={1}",tid.Text,uid));
         }
+
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+        }
     }
 }
