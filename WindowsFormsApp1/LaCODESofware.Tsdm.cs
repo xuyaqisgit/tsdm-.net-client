@@ -76,7 +76,7 @@ namespace LaCODESoftware.Tsdm
             {
                 string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>" +
                     "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" />" +
-                    "<link rel=\"stylesheet\" href=\"https://xuyaqisgit.github.io/tsdm-.net-client/WebStyle.css\" type=\"text/css\" /></head>";
+                    "<style type=\"text/css\"> .user{ width:138px;} .avatar{ max-width:22px; max-height:19px;} .main{ width:321px;}.Tbody{ word-wrap:break-word;} .Tbody>img{ width:auto; height:auto; max-width:100%; max-height:100%;}</style></head>";
                 string post = "";
                 if (json.thread_price != null && json.thread_paid == "0")
                 {
@@ -84,7 +84,7 @@ namespace LaCODESoftware.Tsdm
                 }
                 foreach (var item in json.postlist)
                 {
-                    post += String.Format("<table><tbody><tr><td class=\"user\"><div><div><img class=\"avatar\" src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td class=\"main\"><div><div><table><tbody><tr><td><div class=\"body\">{4}</div></td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
+                    post += String.Format("<table><tbody><tr><td class=\"user\"><div><div><img class=\"avatar\" src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><div>{1}</div><div>{2}</div><div>{3}</div></div></td><td class=\"main\"><div><div><table><tbody><tr><td class=\"Tbody\">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
                 }
                 return head + "<body>" + post.Replace(" target=\"_blank\"", "") + "</body></html>";
             }

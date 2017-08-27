@@ -63,7 +63,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.fpage = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.fpageup = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.SearchPanel = new System.Windows.Forms.Panel();
@@ -419,7 +419,7 @@
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Controls.Add(this.fpage);
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.fpageup);
             this.panel4.Location = new System.Drawing.Point(3, 139);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(332, 46);
@@ -453,15 +453,15 @@
             this.fpage.TabIndex = 1;
             this.fpage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
-            // button1
+            // fpageup
             // 
-            this.button1.Location = new System.Drawing.Point(3, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "上页";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_ClickAsync);
+            this.fpageup.Location = new System.Drawing.Point(3, 14);
+            this.fpageup.Name = "fpageup";
+            this.fpageup.Size = new System.Drawing.Size(75, 23);
+            this.fpageup.TabIndex = 0;
+            this.fpageup.Text = "上页";
+            this.fpageup.UseVisualStyleBackColor = true;
+            this.fpageup.Click += new System.EventHandler(this.Button1_ClickAsync);
             // 
             // panel6
             // 
@@ -900,7 +900,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox fpage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button fpageup;
         private System.Windows.Forms.Button SubForumBottun;
         private System.Windows.Forms.Button WebButton;
         private System.Windows.Forms.Panel WebPanel;
