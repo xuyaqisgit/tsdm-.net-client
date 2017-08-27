@@ -11,11 +11,11 @@
     width: 70%;
 }
 
-.body {
+.Tbody {
     word-wrap: break-word;
 }
 
-    .body > img {
+    .Tbody > img {
         width: auto;
         height: auto;
         max-width: 100%;
