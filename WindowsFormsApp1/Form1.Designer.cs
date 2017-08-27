@@ -248,7 +248,7 @@
             // VerifyImage
             // 
             this.VerifyImage.ImageLocation = "";
-            this.VerifyImage.Location = new System.Drawing.Point(3, 421);
+            this.VerifyImage.Location = new System.Drawing.Point(14, 172);
             this.VerifyImage.Name = "VerifyImage";
             this.VerifyImage.Size = new System.Drawing.Size(321, 140);
             this.VerifyImage.TabIndex = 8;

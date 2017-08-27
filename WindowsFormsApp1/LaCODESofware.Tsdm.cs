@@ -50,7 +50,7 @@ namespace LaCODESoftware.Tsdm
             Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid=628244");
             Json json = JsonHelper.DataContractJsonDeserialize<Json>(tuple.Item1);
             string formhash = json.formhash;
-            await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes", String.Format("formhash={0}&referer=http://www.tsdm.me/./&tid={1}&paysubmit=true", formhash, tid));
+            await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes", String.Format("formhash={0}&referer=http://www.tsdm.me/./&tid={1}&paysubmit=true", formhash, tid));
         }
         /// <summary>
         /// 获取帖子内容
@@ -96,7 +96,7 @@ namespace LaCODESoftware.Tsdm
         /// <returns>返回包含所需信息的实体类</returns>
         public async Task<Json> GetForumAsync(string gid)
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&gid={0}", gid));
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&gid={0}", gid));
             _Cookie = tuple.Item2;
             return JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
         }
@@ -108,7 +108,7 @@ namespace LaCODESoftware.Tsdm
         /// <returns>返回包含所需信息的实体类</returns>
         public async Task<Json> GetForumAsync(string fid, string page)
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=forumdisplay&fid={0}&page={1}", fid, page));
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=forumdisplay&fid={0}&page={1}", fid, page));
             return JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
         }
         /// <summary>
@@ -117,9 +117,9 @@ namespace LaCODESoftware.Tsdm
         /// <returns>返回签到回执信息</returns>
         public async Task<string> CheckAsync()
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid=628244");
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid=628244");
             Json json = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
-            tuple = await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/plugin.php?mobile=yes&tsdmapp=1&id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1", String.Format("qdmode=1&formhash={0}&fastreply=1&qdxq=kx&todaysay=winform客户端签到", json.formhash));
+            tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/plugin.php?mobile=yes&tsdmapp=1&id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1", String.Format("qdmode=1&formhash={0}&fastreply=1&qdxq=kx&todaysay=winform客户端签到", json.formhash));
             json = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
             return json.message;
         }
@@ -131,9 +131,9 @@ namespace LaCODESoftware.Tsdm
         /// <returns>返回是否成功的布尔值</returns>
         public async Task<Tuple<bool,string>> ReplyAsync(string tid, string body)
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid={0}", tid));
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=post&action=reply&tid={0}", tid));
             Json json = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
-            tuple = await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=2&mod=post&action=reply&replysubmit=yes", String.Format("message={0}&formhash={1}&clienthash=DC0EEB7B38AA1F07AF76895A8E14747B&tid={2}&", body, json.formhash, tid));
+            tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=2&mod=post&action=reply&replysubmit=yes", String.Format("message={0}&formhash={1}&clienthash=DC0EEB7B38AA1F07AF76895A8E14747B&tid={2}&", body, json.formhash, tid));
             json = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
             if (json.message == "post_reply_succeed")
             {
@@ -150,7 +150,7 @@ namespace LaCODESoftware.Tsdm
         /// <returns>返回包含所需信息的实体类</returns>
         public async Task<Json> UserInfoAsync()
         {
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/home.php?mobile=yes&tsdmapp=1&mod=space&do=profile ");
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/home.php?mobile=yes&tsdmapp=1&mod=space&do=profile ");
             _Cookie = tuple.Item2;
             return JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
         }
@@ -158,7 +158,11 @@ namespace LaCODESoftware.Tsdm
         /// 取得验证码流
         /// </summary>
         /// <returns>返回流</returns>
-        public async Task<Stream> VerifyCodeAsync() => (await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/plugin.php?id=oracle:verify")).Item1;
+        public async Task<Stream> VerifyCodeAsync()
+        {
+            return (await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/plugin.php?id=oracle:verify")).Item1;
+        }
+
         /// <summary>
         /// 登录论坛
         /// </summary>
@@ -170,7 +174,7 @@ namespace LaCODESoftware.Tsdm
         public async Task<bool> LogInAsync(string username, string password, string verifycode, string loginfield)
         {
             string body = String.Format("password={0}&tsdm_verify={1}&fastloginfield={2}&answer=&username={3}&questionid=0&", password, verifycode, loginfield, username);
-            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(Cookie, "http://www.tsdm.me/member.php?mobile=yes&tsdmapp=1&mod=logging&action=login&loginsubmit=yes", body);
+            Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, "http://www.tsdm.me/member.php?mobile=yes&tsdmapp=1&mod=logging&action=login&loginsubmit=yes", body);
             Json LogResult = JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
             _Cookie = tuple.Item2;
             if (LogResult.message == "location_login_succeed_mobile")
