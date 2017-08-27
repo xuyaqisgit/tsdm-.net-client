@@ -22,13 +22,13 @@ namespace LaCODESoftware.BasicHelper
         /// <returns></returns>
         public static async Task<Tuple<Stream, CookieContainer>> GetStreamAsync(CookieContainer cookie, string url, string Body)
         {
-            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(new Uri(url));
             httpRequest.CookieContainer = cookie;
             httpRequest.Method = "POST";
             httpRequest.KeepAlive = true;
             httpRequest.UserAgent = "Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-CN) WindowsPowerShell/5.1.16257.1";
             httpRequest.ContentType = "application/x-www-form-urlencoded";
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(Body);
+            byte[] bytes = Encoding.UTF8.GetBytes(Body);
             httpRequest.ContentLength = bytes.Length;
             Stream stream = httpRequest.GetRequestStream();
             stream.Write(bytes, 0, bytes.Length);
@@ -45,9 +45,8 @@ namespace LaCODESoftware.BasicHelper
         /// <returns></returns>
         public static async Task<Tuple<Stream, CookieContainer>> GetStreamAsync(CookieContainer cookie, string url)
         {
-            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(new Uri(url));
             httpRequest.CookieContainer = cookie;
-            httpRequest.Referer = url;
             httpRequest.UserAgent = "Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-CN) WindowsPowerShell/5.1.16257.1";
             httpRequest.Accept = "text/html, application/xhtml+xml, */*";
             httpRequest.ContentType = "application/x-www-form-urlencoded";
