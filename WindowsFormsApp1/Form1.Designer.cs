@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.userpanel = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.UserinfoRenewButton = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.fpage = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
@@ -73,14 +74,14 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.spage = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.WebPanel = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button10 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tpage = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.ReplyPanel = new System.Windows.Forms.Panel();
@@ -89,6 +90,7 @@
             this.ReplyBody = new System.Windows.Forms.TextBox();
             this.tid = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.AboutButton = new System.Windows.Forms.Button();
             this.SearchShowButton = new System.Windows.Forms.Button();
             this.WebButton = new System.Windows.Forms.Button();
@@ -124,6 +126,7 @@
             // 
             this.flowLayoutPanel1.AllowDrop = true;
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.panel10);
             this.flowLayoutPanel1.Controls.Add(this.userpanel);
             this.flowLayoutPanel1.Controls.Add(this.logpanel);
             this.flowLayoutPanel1.Controls.Add(this.FourmPanel);
@@ -131,12 +134,19 @@
             this.flowLayoutPanel1.Controls.Add(this.SearchPanel);
             this.flowLayoutPanel1.Controls.Add(this.WebPanel);
             this.flowLayoutPanel1.Controls.Add(this.ReplyPanel);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(101, 0);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(741, 412);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(842, 412);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // panel10
+            // 
+            this.panel10.Location = new System.Drawing.Point(3, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(92, 389);
+            this.panel10.TabIndex = 20;
             // 
             // userpanel
             // 
@@ -148,9 +158,9 @@
             this.userpanel.Controls.Add(this.UidLabel);
             this.userpanel.Controls.Add(this.UsernameLabel);
             this.userpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userpanel.Location = new System.Drawing.Point(3, 3);
+            this.userpanel.Location = new System.Drawing.Point(101, 3);
             this.userpanel.Name = "userpanel";
-            this.userpanel.Size = new System.Drawing.Size(340, 388);
+            this.userpanel.Size = new System.Drawing.Size(340, 389);
             this.userpanel.TabIndex = 13;
             // 
             // label8
@@ -169,7 +179,7 @@
             this.UserinfoRenewButton.TabIndex = 12;
             this.UserinfoRenewButton.Text = "刷新";
             this.UserinfoRenewButton.UseVisualStyleBackColor = true;
-            this.UserinfoRenewButton.Click += new System.EventHandler(this.UserinfoRenewButton_ClickAsync);
+            this.UserinfoRenewButton.Click += new System.EventHandler(this.UserinfoRenewButton_Click);
             // 
             // CheckButton
             // 
@@ -219,7 +229,7 @@
             this.logpanel.Controls.Add(this.label3);
             this.logpanel.Controls.Add(this.label2);
             this.logpanel.Controls.Add(this.label1);
-            this.logpanel.Location = new System.Drawing.Point(349, 3);
+            this.logpanel.Location = new System.Drawing.Point(447, 3);
             this.logpanel.Name = "logpanel";
             this.logpanel.Size = new System.Drawing.Size(340, 388);
             this.logpanel.TabIndex = 12;
@@ -319,7 +329,7 @@
             // 
             this.FourmPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FourmPanel.Controls.Add(this.flowLayoutPanel2);
-            this.FourmPanel.Location = new System.Drawing.Point(695, 3);
+            this.FourmPanel.Location = new System.Drawing.Point(793, 3);
             this.FourmPanel.Name = "FourmPanel";
             this.FourmPanel.Size = new System.Drawing.Size(340, 388);
             this.FourmPanel.TabIndex = 16;
@@ -372,7 +382,7 @@
             // 
             this.SubForumPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SubForumPanel.Controls.Add(this.flowLayoutPanel5);
-            this.SubForumPanel.Location = new System.Drawing.Point(1041, 3);
+            this.SubForumPanel.Location = new System.Drawing.Point(1139, 3);
             this.SubForumPanel.Name = "SubForumPanel";
             this.SubForumPanel.Size = new System.Drawing.Size(340, 388);
             this.SubForumPanel.TabIndex = 17;
@@ -408,7 +418,7 @@
             // 
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.fpage);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Location = new System.Drawing.Point(3, 139);
             this.panel4.Name = "panel4";
@@ -435,13 +445,13 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_ClickAsync);
             // 
-            // textBox4
+            // fpage
             // 
-            this.textBox4.Location = new System.Drawing.Point(165, 15);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(82, 21);
-            this.textBox4.TabIndex = 1;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            this.fpage.Location = new System.Drawing.Point(165, 15);
+            this.fpage.Name = "fpage";
+            this.fpage.Size = new System.Drawing.Size(82, 21);
+            this.fpage.TabIndex = 1;
+            this.fpage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
             // button1
             // 
@@ -478,7 +488,7 @@
             this.SearchPanel.Controls.Add(this.webBrowser2);
             this.SearchPanel.Controls.Add(this.panel7);
             this.SearchPanel.Controls.Add(this.panel9);
-            this.SearchPanel.Location = new System.Drawing.Point(1387, 3);
+            this.SearchPanel.Location = new System.Drawing.Point(1485, 3);
             this.SearchPanel.Name = "SearchPanel";
             this.SearchPanel.Size = new System.Drawing.Size(400, 388);
             this.SearchPanel.TabIndex = 19;
@@ -491,7 +501,7 @@
             this.webBrowser2.Name = "webBrowser2";
             this.webBrowser2.Size = new System.Drawing.Size(400, 302);
             this.webBrowser2.TabIndex = 5;
-            this.webBrowser2.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser2_NavigatingAsync);
+            this.webBrowser2.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser1_NavigatingAsync);
             // 
             // panel7
             // 
@@ -523,7 +533,7 @@
             // 
             this.panel9.Controls.Add(this.button7);
             this.panel9.Controls.Add(this.button8);
-            this.panel9.Controls.Add(this.textBox6);
+            this.panel9.Controls.Add(this.spage);
             this.panel9.Controls.Add(this.button9);
             this.panel9.Location = new System.Drawing.Point(4, 339);
             this.panel9.Name = "panel9";
@@ -550,13 +560,13 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_ClickAsync);
             // 
-            // textBox6
+            // spage
             // 
-            this.textBox6.Location = new System.Drawing.Point(165, 15);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(82, 21);
-            this.textBox6.TabIndex = 1;
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            this.spage.Location = new System.Drawing.Point(165, 15);
+            this.spage.Name = "spage";
+            this.spage.Size = new System.Drawing.Size(82, 21);
+            this.spage.TabIndex = 1;
+            this.spage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
             // button9
             // 
@@ -573,7 +583,7 @@
             this.WebPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.WebPanel.Controls.Add(this.panel8);
             this.WebPanel.Controls.Add(this.webBrowser1);
-            this.WebPanel.Location = new System.Drawing.Point(1793, 3);
+            this.WebPanel.Location = new System.Drawing.Point(1891, 3);
             this.WebPanel.Name = "WebPanel";
             this.WebPanel.Size = new System.Drawing.Size(500, 388);
             this.WebPanel.TabIndex = 18;
@@ -583,7 +593,7 @@
             this.panel8.Controls.Add(this.button10);
             this.panel8.Controls.Add(this.button4);
             this.panel8.Controls.Add(this.button5);
-            this.panel8.Controls.Add(this.textBox5);
+            this.panel8.Controls.Add(this.tpage);
             this.panel8.Controls.Add(this.button6);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel8.Location = new System.Drawing.Point(0, 340);
@@ -599,7 +609,7 @@
             this.button10.TabIndex = 4;
             this.button10.Text = "分享";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button10.Click += new System.EventHandler(this.Button10_Click);
             // 
             // button4
             // 
@@ -621,13 +631,13 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // textBox5
+            // tpage
             // 
-            this.textBox5.Location = new System.Drawing.Point(165, 15);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(82, 21);
-            this.textBox5.TabIndex = 1;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
+            this.tpage.Location = new System.Drawing.Point(165, 15);
+            this.tpage.Name = "tpage";
+            this.tpage.Size = new System.Drawing.Size(82, 21);
+            this.tpage.TabIndex = 1;
+            this.tpage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox4_KeyPress);
             // 
             // button6
             // 
@@ -656,7 +666,7 @@
             this.ReplyPanel.Controls.Add(this.label6);
             this.ReplyPanel.Controls.Add(this.ReplyBody);
             this.ReplyPanel.Controls.Add(this.tid);
-            this.ReplyPanel.Location = new System.Drawing.Point(2299, 3);
+            this.ReplyPanel.Location = new System.Drawing.Point(2397, 3);
             this.ReplyPanel.Name = "ReplyPanel";
             this.ReplyPanel.Size = new System.Drawing.Size(340, 388);
             this.ReplyPanel.TabIndex = 14;
@@ -699,6 +709,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.progressBar1);
             this.panel1.Controls.Add(this.AboutButton);
             this.panel1.Controls.Add(this.SearchShowButton);
             this.panel1.Controls.Add(this.WebButton);
@@ -707,11 +718,17 @@
             this.panel1.Controls.Add(this.ReplyShowButton);
             this.panel1.Controls.Add(this.UserLogShowButton);
             this.panel1.Controls.Add(this.UserInfoShowButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(95, 412);
+            this.panel1.Size = new System.Drawing.Size(95, 392);
             this.panel1.TabIndex = 15;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(0, 359);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(95, 23);
+            this.progressBar1.TabIndex = 9;
             // 
             // AboutButton
             // 
@@ -882,7 +899,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox fpage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button SubForumBottun;
         private System.Windows.Forms.Button WebButton;
@@ -891,7 +908,7 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tpage;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel SearchPanel;
@@ -901,12 +918,14 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox spage;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.WebBrowser webBrowser2;
         private System.Windows.Forms.Button SearchShowButton;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button AboutButton;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

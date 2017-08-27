@@ -11,9 +11,6 @@ namespace LaCODESoftware.Tsdm
     {
         private TsdmHelper tsdmHelper = new TsdmHelper();
         private string fid;
-        private string fpage;
-        private string tpage;
-        private string spage;
         private string uid;
 
         public Form1()
@@ -23,21 +20,19 @@ namespace LaCODESoftware.Tsdm
 
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
+            progressBar1.Maximum = 2;
+            progressBar1.Value = 0;
             if (File.Exists("cookie"))
             {
                 tsdmHelper.Cookie = StreamHelper.ReadCookiesFromDisk("cookie");
-                Json json = await tsdmHelper.UserInfoAsync();
-                UsernameLabel.Text = "用户名:" + json.username;
-                UidLabel.Text = "Uid:" + json.uid;
-                uid = json.uid;
-                label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
-                UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
+                UserinfoCheckAsync();
             }
             else
             {
                 logpanel.Visible = true;
                 VerifyImage.Image = Image.FromStream(await tsdmHelper.VerifyCodeAsync());
             }
+            progressBar1.Value = 1;
             Json Json = await tsdmHelper.GetForumAsync("");
             foreach (var str in Json.group)
             {
@@ -54,6 +49,7 @@ namespace LaCODESoftware.Tsdm
                 btn.Click += GroupButton_ClickAsync;
                 flowLayoutPanel3.Controls.Add(btn);
             }
+            progressBar1.Value = 2;
         }
 
         private async void VerifyImage_ClickAsync(object sender, EventArgs e)
@@ -67,13 +63,7 @@ namespace LaCODESoftware.Tsdm
             if (result == true)
             {
                 logpanel.Visible = false;
-                Json json = await tsdmHelper.UserInfoAsync();
-                StreamHelper.WriteCookiesToDisk("cookie", tsdmHelper.Cookie);
-                UsernameLabel.Text = "用户名:" + json.username;
-                UidLabel.Text = "Uid:" + json.uid;
-                uid = json.uid;
-                UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
-                label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
+                UserinfoCheckAsync();
             }
             else
             {
@@ -87,16 +77,7 @@ namespace LaCODESoftware.Tsdm
             MessageBox.Show(await tsdmHelper.CheckAsync());
         }
 
-        private async void UserinfoRenewButton_ClickAsync(object sender, EventArgs e)
-        {
-
-            Json json = await tsdmHelper.UserInfoAsync();
-            UsernameLabel.Text = "用户名:" + json.username;
-            UidLabel.Text = "Uid:" + json.uid;
-            label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
-            UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
-
-        }
+        private void UserinfoRenewButton_Click(object sender, EventArgs e) => UserinfoCheckAsync();
 
         private async void ReplyButton_ClickAsync(object sender, EventArgs e)
         {
@@ -162,7 +143,6 @@ namespace LaCODESoftware.Tsdm
         {
             flowLayoutPanel7.Controls.Clear();
             Button button = sender as Button;
-
             Json json = await tsdmHelper.GetForumAsync(button.Tag.ToString(), "1");
             if (json.status == "-1")
             {
@@ -171,7 +151,7 @@ namespace LaCODESoftware.Tsdm
             else
             {
                 SubForumAdd(json);
-                fpage = "1";
+                fpage.Text = "1";
                 fid = button.Tag.ToString();
             }
         }
@@ -198,7 +178,7 @@ namespace LaCODESoftware.Tsdm
                 flowLayoutPanel6.Controls.Add(btn);
             }
             SubForumAdd(json);
-            fpage = "1";
+            fpage.Text = "1";
             fid = label.Tag.ToString();
 
         }
@@ -208,7 +188,7 @@ namespace LaCODESoftware.Tsdm
             Label label = sender as Label;
             webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(label.Tag.ToString(), "1");
             tid.Text = label.Tag.ToString();
-            tpage = "1";
+            tpage.Text = "1";
         }
 
         private void FourmButton_Click(object sender, EventArgs e)
@@ -228,24 +208,24 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button1_ClickAsync(object sender, EventArgs e)
         {
-            int intfpage = int.Parse(fpage);
+            int intfpage = int.Parse(fpage.Text);
             if (intfpage > 1)
             {
                 intfpage--;
-                fpage = intfpage.ToString();
+                fpage.Text = intfpage.ToString();
                 flowLayoutPanel7.Controls.Clear();
-                Json json = await tsdmHelper.GetForumAsync(fid, fpage);
+                Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
                 SubForumAdd(json);
             }
         }
 
         private async void Button2_ClickAsync(object sender, EventArgs e)
         {
-            int intfpage = int.Parse(fpage);
+            int intfpage = int.Parse(fpage.Text);
             intfpage++;
-            fpage = intfpage.ToString();
+            fpage.Text = intfpage.ToString();
             flowLayoutPanel7.Controls.Clear();
-            Json json = await tsdmHelper.GetForumAsync(fid, fpage);
+            Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
             SubForumAdd(json);
         }
 
@@ -262,9 +242,8 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button3_ClickAsync(object sender, EventArgs e)
         {
-            fpage = textBox4.Text.ToString();
             flowLayoutPanel7.Controls.Clear();
-            Json json = await tsdmHelper.GetForumAsync(fid, fpage);
+            Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
             SubForumAdd(json);
         }
 
@@ -276,7 +255,7 @@ namespace LaCODESoftware.Tsdm
                 if (e.Url.ToString() == "http://www.tsdm.me/forum.php?mod=misc&action=pay&mobile=yes&paysubmit=yes&infloat=yes")
                 {
                     await tsdmHelper.PayAsync(tid.Text);
-                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
                 }
                 else
                 {
@@ -284,13 +263,13 @@ namespace LaCODESoftware.Tsdm
                     tid.Text = matchCollection[0].ToString();
                     if (matchCollection.Count > 1)
                     {
-                        tpage = matchCollection[1].ToString();
+                        tpage.Text = matchCollection[1].ToString();
                     }
                     else
                     {
-                        tpage = "1";
+                        tpage.Text = "1";
                     }
-                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
                 }
             }
             else if (e.Url.ToString() == "about:blank")
@@ -306,27 +285,27 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button6_Click(object sender, EventArgs e)
         {
-            int inttpage = int.Parse(tpage);
+            int inttpage = int.Parse(tpage.Text);
             if (inttpage > 1)
             {
                 inttpage--;
-                tpage = inttpage.ToString();
-                webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+                tpage.Text = inttpage.ToString();
+                webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
             }
         }
 
         private async void Button5_Click(object sender, EventArgs e)
         {
-            int inttpage = int.Parse(tpage);
+            int inttpage = int.Parse(tpage.Text);
             inttpage++;
-            tpage = inttpage.ToString();
-            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+            tpage.Text = inttpage.ToString();
+            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
         }
 
         private async void Button4_Click(object sender, EventArgs e)
         {
-            tpage = textBox5.ToString();
-            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
+            tpage.Text = tpage.ToString();
+            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -360,32 +339,32 @@ namespace LaCODESoftware.Tsdm
         private async void SearchButton_ClickAsync(object sender, EventArgs e)
         {
             webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text,"1");
-            spage = "1";
+            spage.Text = "1";
         }
 
         private async void Button9_ClickAsync(object sender, EventArgs e)
         {
-            int intspage = int.Parse(spage);
+            int intspage = int.Parse(spage.Text);
             if (intspage > 1)
             {
                 intspage--;
-                spage = intspage.ToString();
-                webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+                spage.Text = intspage.ToString();
+                webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
             }
         }
 
         private async void Button8_ClickAsync(object sender, EventArgs e)
         {
-            int intspage = int.Parse(spage);
+            int intspage = int.Parse(spage.Text);
             intspage++;
-            spage = intspage.ToString();
-            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+            spage.Text = intspage.ToString();
+            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
         }
 
         private async void Button7_ClickAsync(object sender, EventArgs e)
         {
-            spage = textBox7.Text;
-            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage);
+            spage.Text = textBox7.Text;
+            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
         }
 
         private void SearchShowButton_Click(object sender, EventArgs e)
@@ -393,30 +372,7 @@ namespace LaCODESoftware.Tsdm
             SearchPanel.Visible = !SearchPanel.Visible;
         }
 
-        private async void WebBrowser2_NavigatingAsync(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            if (e.Url.Host.Contains("www.tsdm.me") || e.Url.Host.Contains("forum.php") || e.Url.Host.Contains("www.tsdm.net"))
-            {
-                e.Cancel = true;
-                MatchCollection matchCollection = Regex.Matches(e.Url.ToString(), @"\b\d+\b");
-                tid.Text = matchCollection[0].ToString();
-                if (matchCollection.Count > 1)
-                {
-                    tpage = matchCollection[1].ToString();
-                }
-                else
-                {
-                    tpage = "1";
-                }
-                webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage);
-            }
-            else
-            {
-                    
-            }
-        }
-
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&fromuid={1}",tid.Text,uid));
         }
@@ -425,6 +381,16 @@ namespace LaCODESoftware.Tsdm
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
+        }
+
+        private async void UserinfoCheckAsync()
+        {
+            Json json = await tsdmHelper.UserInfoAsync();
+            UsernameLabel.Text = "用户名:" + json.username;
+            UidLabel.Text = "Uid:" + json.uid;
+            uid = json.uid;
+            label8.Text = json.extcredits1 + "\n" + json.extcredits2 + "\n" + json.extcredits3 + "\n" + json.extcredits4 + "\n" + json.extcredits5 + "\n" + json.extcredits6 + "\n" + json.extcredits7;
+            UserAratar.Image = Image.FromStream((await WebHelper.GetStreamAsync(tsdmHelper.Cookie, String.Format("{0}", json.avatar))).Item1);
         }
     }
 }
