@@ -234,7 +234,7 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button1_ClickAsync(object sender, EventArgs e)
         {
-            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
+            if (fpage.Text.Length != 0 && fid != null)
             {
                 progressBar1.Value = 0;
                 int intfpage = int.Parse(fpage.Text);
@@ -253,7 +253,7 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button2_ClickAsync(object sender, EventArgs e)
         {
-            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
+            if (fpage.Text.Length != 0 &&  fid != null)
             {
                 progressBar1.Value = 0;
                 int intfpage = int.Parse(fpage.Text);
@@ -280,7 +280,7 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button3_ClickAsync(object sender, EventArgs e)
         {
-            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
+            if (fpage.Text.Length != 0 && fid != null)
             {
                 progressBar1.Value = 0;
                 flowLayoutPanel7.Controls.Clear();
