@@ -82,7 +82,14 @@ namespace LaCODESoftware.Tsdm
 
         private async void CheckButton_ClickAsync(object sender, EventArgs e)
         {
-            MessageBox.Show(await tsdmHelper.CheckAsync());
+            if (IsLoggded == true)
+            {
+                MessageBox.Show(await tsdmHelper.CheckAsync());
+            }
+            else
+            {
+                MessageBox.Show("请先登录");
+            }
         }
 
         private void UserinfoRenewButton_Click(object sender, EventArgs e)
@@ -165,9 +172,9 @@ namespace LaCODESoftware.Tsdm
             flowLayoutPanel7.Controls.Clear();
             Button button = sender as Button;
             Json json = await tsdmHelper.GetForumAsync(button.Tag.ToString(), "1");
-            if (json.status == "-1")
+            if (json.status == -1)
             {
-                MessageBox.Show(json.message);
+                MessageBox.Show("可能没有访问权限具体原因见系统提示"+ json.message);
             }
             else
             {

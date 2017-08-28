@@ -68,9 +68,9 @@ namespace LaCODESoftware.Tsdm
             }
             Json json = JsonHelper.DataContractJsonDeserialize<Json>(result);
             _Cookie = tuple.Item2;
-            if (json.status == "-1")
+            if (json.status == -1)
             {
-                return json.message;
+                return "可能没有相关权限，见系统回复：\n"+json.message+ "</body></html>";
             }
             else
             {
@@ -109,7 +109,7 @@ namespace LaCODESoftware.Tsdm
         public async Task<Json> GetForumAsync(string fid, string page)
         {
             Tuple<Stream, CookieContainer> tuple = await WebHelper.GetStreamAsync(_Cookie, String.Format("http://www.tsdm.me/forum.php?mobile=yes&tsdmapp=1&mod=forumdisplay&fid={0}&page={1}", fid, page));
-            return JsonHelper.DataContractJsonDeserialize<Json>(StreamHelper.StreamToString(tuple.Item1));
+            return JsonHelper.DataContractJsonDeserialize<Json>((StreamHelper.StreamToString(tuple.Item1)));
         }
         /// <summary>
         /// 签到
@@ -141,7 +141,7 @@ namespace LaCODESoftware.Tsdm
             }
             else
             {
-                return new Tuple<bool, string>(false, "回复失败"+json.message);
+                return new Tuple<bool, string>(false, "回复失败系统回复："+json.message);
             }
         }
         /// <summary>
@@ -188,6 +188,14 @@ namespace LaCODESoftware.Tsdm
         }
     }
     #region Json类及其所有子类都由计算机生成请勿修改
+    public class Extra
+    {
+        public string login { get; set; }
+    }
+    public class Values
+    {
+        public string formulamessage { get; set; }
+    }
     public class Author
     {
         public string login { get; set; }
@@ -326,7 +334,7 @@ namespace LaCODESoftware.Tsdm
     /// </summary>
     public class Json
     {
-        public string status { get; set; }
+        public int status { get; set; }
         public IList<Group> group { get; set; }
         public string message { get; set; }
         public string uid { get; set; }
@@ -382,7 +390,7 @@ namespace LaCODESoftware.Tsdm
         public string noticeauthormsg { get; set; }
         public string tid { get; set; }
         public string tag_name { get; set; }
-        public string url { get; set; }
+        public object url { get; set; }
         public string html_url { get; set; }
         public string assets_url { get; set; }
         public string upload_url { get; set; }
@@ -398,6 +406,8 @@ namespace LaCODESoftware.Tsdm
         public string published_at { get; set; }
         public Author author { get; set; }
         public IList<Asset> assets { get; set; }
+        public Extra extra { get; set; }
+        public Values values { get; set; }
     }
     #endregion
     [Serializable()]
