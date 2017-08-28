@@ -169,18 +169,26 @@ namespace LaCODESoftware.Tsdm
 
         private async void SubGroupButton_ClickAsync(object sender, EventArgs e)
         {
-            flowLayoutPanel7.Controls.Clear();
             Button button = sender as Button;
-            Json json = await tsdmHelper.GetForumAsync(button.Tag.ToString(), "1");
-            if (json.status == -1)
+            string temp = button.Tag.ToString();
+            if (!((temp.Equals("417")|| temp.Equals("419")|| temp.Equals("317")) &&IsLoggded == false))
             {
-                MessageBox.Show("可能没有访问权限具体原因见系统提示"+ json.message);
+                flowLayoutPanel7.Controls.Clear();
+                Json json = await tsdmHelper.GetForumAsync(button.Tag.ToString(), "1");
+                if (json.status == -1)
+                {
+                    MessageBox.Show("可能没有访问权限具体原因见系统提示" + json.message);
+                }
+                else
+                {
+                    SubForumAdd(json);
+                    fpage.Text = "1";
+                    fid = button.Tag.ToString();
+                }
             }
             else
             {
-                SubForumAdd(json);
-                fpage.Text = "1";
-                fid = button.Tag.ToString();
+                MessageBox.Show("可能没有访问权限");
             }
         }
 
@@ -191,25 +199,32 @@ namespace LaCODESoftware.Tsdm
             flowLayoutPanel6.Controls.Clear();
             flowLayoutPanel7.Controls.Clear();
             Json json = await tsdmHelper.GetForumAsync(label.Tag.ToString(), "1");
-            progressBar1.Value = 1;
-            foreach (var str in json.subforum)
+            if (json.status == -1)
             {
-                Button btn = new Button
-                {
-                    Name = "btn" + str.fid.ToString()
-                    ,
-                    Text = str.name.ToString()
-                    ,
-                    AutoSize = true
-                    ,
-                    Tag = str.fid.ToString()
-                };
-                btn.Click += SubGroupButton_ClickAsync;
-                flowLayoutPanel6.Controls.Add(btn);
+                MessageBox.Show("可能没有访问权限具体原因见系统提示" + json.message);
             }
-            SubForumAdd(json);
-            fpage.Text = "1";
-            fid = label.Tag.ToString();
+            else
+            {
+                progressBar1.Value = 1;
+                foreach (var str in json.subforum)
+                {
+                    Button btn = new Button
+                    {
+                        Name = "btn" + str.fid.ToString()
+                        ,
+                        Text = str.name.ToString()
+                        ,
+                        AutoSize = true
+                        ,
+                        Tag = str.fid.ToString()
+                    };
+                    btn.Click += SubGroupButton_ClickAsync;
+                    flowLayoutPanel6.Controls.Add(btn);
+                }
+                SubForumAdd(json);
+                fpage.Text = "1";
+                fid = label.Tag.ToString();
+            }
             progressBar1.Value = 2;
         }
 
