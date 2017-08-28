@@ -12,7 +12,8 @@ namespace LaCODESoftware.Tsdm
         private TsdmHelper tsdmHelper = new TsdmHelper();
         private string fid;
         private string uid;
-
+        private bool IsLoggded = false;
+        private CookieContainerForSave ForSave = new CookieContainerForSave();
         public Form1()
         {
             InitializeComponent();
@@ -20,11 +21,16 @@ namespace LaCODESoftware.Tsdm
 
         private async void Form1_LoadAsync(object sender, EventArgs e)
         {
-            progressBar1.Maximum = 2;
-            progressBar1.Value = 0;
             if (File.Exists("cookie"))
             {
-                tsdmHelper.Cookie = StreamHelper.ReadCookiesFromDisk("cookie");
+                ForSave = StreamHelper.ReadCookiesFromDisk("cookie");
+                IsLoggded = ForSave.IsLogged;
+                tsdmHelper.Cookie = ForSave.CookieContainer;
+            }
+            progressBar1.Maximum = 2;
+            progressBar1.Value = 0;
+            if (IsLoggded)
+            {
                 UserinfoCheckAsync();
             }
             else
@@ -62,8 +68,10 @@ namespace LaCODESoftware.Tsdm
             bool result = await tsdmHelper.LogInAsync(textBox1.Text, textBox2.Text, textBox3.Text, comboBox1.SelectedItem.ToString());
             if (result == true)
             {
+                IsLoggded = true;
                 logpanel.Visible = false;
                 UserinfoCheckAsync();
+                SaveCookie();
             }
             else
             {
@@ -77,20 +85,33 @@ namespace LaCODESoftware.Tsdm
             MessageBox.Show(await tsdmHelper.CheckAsync());
         }
 
-        private void UserinfoRenewButton_Click(object sender, EventArgs e) => UserinfoCheckAsync();
-
-        private async void ReplyButton_ClickAsync(object sender, EventArgs e)
+        private void UserinfoRenewButton_Click(object sender, EventArgs e)
         {
-
-            Tuple<bool, string> Result = await tsdmHelper.ReplyAsync(tid.Text, ReplyBody.Text);
-            if (Result.Item1)
+            if (IsLoggded == true)
             {
-                ReplyBody.Clear();
-                MessageBox.Show(Result.Item2);
+                UserinfoCheckAsync();
             }
             else
             {
-                MessageBox.Show(Result.Item2);
+                MessageBox.Show("请先登录");
+            }
+                
+        }
+
+        private async void ReplyButton_ClickAsync(object sender, EventArgs e)
+        {
+            if (tid.Text.Length != 0 && IsLoggded != false)
+            {
+                Tuple<bool, string> Result = await tsdmHelper.ReplyAsync(tid.Text, ReplyBody.Text);
+                if (Result.Item1)
+                {
+                    ReplyBody.Clear();
+                    MessageBox.Show(Result.Item2);
+                }
+                else
+                {
+                    MessageBox.Show(Result.Item2);
+                }
             }
         }
 
@@ -213,11 +234,30 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button1_ClickAsync(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            int intfpage = int.Parse(fpage.Text);
-            if (intfpage > 1)
+            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
             {
-                intfpage--;
+                progressBar1.Value = 0;
+                int intfpage = int.Parse(fpage.Text);
+                if (intfpage > 1)
+                {
+                    intfpage--;
+                    fpage.Text = intfpage.ToString();
+                    flowLayoutPanel7.Controls.Clear();
+                    Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
+                    progressBar1.Value = 1;
+                    SubForumAdd(json);
+                    progressBar1.Value = 2;
+                }
+            }
+        }
+
+        private async void Button2_ClickAsync(object sender, EventArgs e)
+        {
+            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
+            {
+                progressBar1.Value = 0;
+                int intfpage = int.Parse(fpage.Text);
+                intfpage++;
                 fpage.Text = intfpage.ToString();
                 flowLayoutPanel7.Controls.Clear();
                 Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
@@ -225,19 +265,6 @@ namespace LaCODESoftware.Tsdm
                 SubForumAdd(json);
                 progressBar1.Value = 2;
             }
-        }
-
-        private async void Button2_ClickAsync(object sender, EventArgs e)
-        {
-            progressBar1.Value = 0;
-            int intfpage = int.Parse(fpage.Text);
-            intfpage++;
-            fpage.Text = intfpage.ToString();
-            flowLayoutPanel7.Controls.Clear();
-            Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
-            progressBar1.Value = 1;
-            SubForumAdd(json);
-            progressBar1.Value = 2;
         }
 
         private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
@@ -253,12 +280,15 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button3_ClickAsync(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            flowLayoutPanel7.Controls.Clear();
-            Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
-            progressBar1.Value = 1;
-            SubForumAdd(json);
-            progressBar1.Value = 2;
+            if (fpage.Text.Length != 0 && (fid.Length != 0 || fid != null))
+            {
+                progressBar1.Value = 0;
+                flowLayoutPanel7.Controls.Clear();
+                Json json = await tsdmHelper.GetForumAsync(fid, fpage.Text);
+                progressBar1.Value = 1;
+                SubForumAdd(json);
+                progressBar1.Value = 2;
+            }
         }
 
         private async void WebBrowser1_NavigatingAsync(object sender, WebBrowserNavigatingEventArgs e)
@@ -278,14 +308,7 @@ namespace LaCODESoftware.Tsdm
                 {
                     MatchCollection matchCollection = Regex.Matches(e.Url.ToString(), @"\b\d+\b");
                     tid.Text = matchCollection[0].ToString();
-                    if (matchCollection.Count > 1)
-                    {
-                        tpage.Text = matchCollection[1].ToString();
-                    }
-                    else
-                    {
-                        tpage.Text = "1";
-                    }
+                    tpage.Text= matchCollection.Count > 1? matchCollection[1].ToString(): "1";
                     progressBar1.Value = 1;
                     webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
                     progressBar1.Value = 2;
@@ -305,11 +328,28 @@ namespace LaCODESoftware.Tsdm
 
         private async void Button6_Click(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            int inttpage = int.Parse(tpage.Text);
-            if (inttpage > 1)
+            if (tpage.Text.Length != 0 && tid.Text.Length != 0)
             {
-                inttpage--;
+                progressBar1.Value = 0;
+                int inttpage = int.Parse(tpage.Text);
+                if (inttpage > 1)
+                {
+                    inttpage--;
+                    tpage.Text = inttpage.ToString();
+                    progressBar1.Value = 1;
+                    webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
+                    progressBar1.Value = 2;
+                }
+            }
+        }
+
+        private async void Button5_Click(object sender, EventArgs e)
+        {
+            if (tpage.Text.Length != 0 && tid.Text.Length != 0)
+            {
+                progressBar1.Value = 0;
+                int inttpage = int.Parse(tpage.Text);
+                inttpage++;
                 tpage.Text = inttpage.ToString();
                 progressBar1.Value = 1;
                 webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
@@ -317,29 +357,28 @@ namespace LaCODESoftware.Tsdm
             }
         }
 
-        private async void Button5_Click(object sender, EventArgs e)
-        {
-            progressBar1.Value = 0;
-            int inttpage = int.Parse(tpage.Text);
-            inttpage++;
-            tpage.Text = inttpage.ToString();
-            progressBar1.Value = 1;
-            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
-            progressBar1.Value = 2;
-        }
-
         private async void Button4_Click(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            tpage.Text = tpage.ToString();
-            progressBar1.Value = 1;
-            webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
-            progressBar1.Value = 2;
+            if (tpage.Text.Length != 0 && tid.Text.Length != 0)
+            {
+                progressBar1.Value = 0;
+                tpage.Text = tpage.ToString();
+                progressBar1.Value = 1;
+                webBrowser1.DocumentText = await tsdmHelper.GetThreadAsync(tid.Text, tpage.Text);
+                progressBar1.Value = 2;
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StreamHelper.WriteCookiesToDisk("cookie", tsdmHelper.Cookie);
+            SaveCookie();
+        }
+
+        private void SaveCookie()
+        {
+            ForSave.CookieContainer = tsdmHelper.Cookie;
+            ForSave.IsLogged = IsLoggded;
+            StreamHelper.WriteCookiesToDisk("cookie", ForSave);
         }
 
         private void SubForumAdd(Json json)
@@ -367,19 +406,39 @@ namespace LaCODESoftware.Tsdm
 
         private async void SearchButton_ClickAsync(object sender, EventArgs e)
         {
-            progressBar1.Value = 1;
-            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text,"1");
-            progressBar1.Value = 2;
-            spage.Text = "1";
+            if (textBox7.Text.Length != 0)
+            {
+                progressBar1.Value = 0;
+                webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, "1");
+                progressBar1.Value = 2;
+                spage.Text = "1";
+            }
         }
 
         private async void Button9_ClickAsync(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            int intspage = int.Parse(spage.Text);
-            if (intspage > 1)
+            if (textBox7.Text.Length != 0 && spage.Text.Length != 0)
             {
-                intspage--;
+                progressBar1.Value = 0;
+                int intspage = int.Parse(spage.Text);
+                if (intspage > 1)
+                {
+                    intspage--;
+                    spage.Text = intspage.ToString();
+                    progressBar1.Value = 1;
+                    webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
+                    progressBar1.Value = 2;
+                }
+            }
+        }
+
+        private async void Button8_ClickAsync(object sender, EventArgs e)
+        {
+            if (textBox7.Text.Length != 0 && spage.Text.Length != 0)
+            {
+                progressBar1.Value = 0;
+                int intspage = int.Parse(spage.Text);
+                intspage++;
                 spage.Text = intspage.ToString();
                 progressBar1.Value = 1;
                 webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
@@ -387,24 +446,16 @@ namespace LaCODESoftware.Tsdm
             }
         }
 
-        private async void Button8_ClickAsync(object sender, EventArgs e)
-        {
-            progressBar1.Value = 0;
-            int intspage = int.Parse(spage.Text);
-            intspage++;
-            spage.Text = intspage.ToString();
-            progressBar1.Value = 1;
-            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
-            progressBar1.Value = 2;
-        }
-
         private async void Button7_ClickAsync(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            spage.Text = textBox7.Text;
-            progressBar1.Value = 1;
-            webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
-            progressBar1.Value = 2;
+            if (textBox7.Text.Length != 0 && spage.Text.Length != 0)
+            {
+                progressBar1.Value = 0;
+                spage.Text = textBox7.Text;
+                progressBar1.Value = 1;
+                webBrowser2.DocumentText = await tsdmHelper.SreachAsync(textBox7.Text, spage.Text);
+                progressBar1.Value = 2;
+            }
         }
 
         private void SearchShowButton_Click(object sender, EventArgs e)
@@ -414,7 +465,10 @@ namespace LaCODESoftware.Tsdm
 
         private void Button10_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&fromuid={1}",tid.Text,uid));
+            if (tid.Text.Length != 0 && uid.Length != 0)
+            {
+                Clipboard.SetText(String.Format("http://www.tsdm.me/forum.php?mod=viewthread&tid={0}&fromuid={1}", tid.Text, uid));
+            }
         }
 
         private void AboutButton_Click(object sender, EventArgs e)

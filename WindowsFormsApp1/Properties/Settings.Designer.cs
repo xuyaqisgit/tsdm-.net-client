@@ -22,16 +22,5 @@ namespace LaCODESoftware.Tsdm.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Net.CookieContainer cookie {
-            get {
-                return ((global::System.Net.CookieContainer)(this["cookie"]));
-            }
-            set {
-                this["cookie"] = value;
-            }
-        }
     }
 }

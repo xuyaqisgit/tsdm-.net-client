@@ -400,4 +400,11 @@ namespace LaCODESoftware.Tsdm
         public IList<Asset> assets { get; set; }
     }
     #endregion
+    [Serializable()]
+    public class CookieContainerForSave
+    {
+        public bool IsLogged { get; set; }
+        public CookieContainer CookieContainer { get; set; }
+        
+    }
 }

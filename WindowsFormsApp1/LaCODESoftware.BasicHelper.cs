@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaCODESoftware.Tsdm;
+using System;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -33,7 +34,7 @@ namespace LaCODESoftware.BasicHelper
             Stream stream = httpRequest.GetRequestStream();
             stream.Write(bytes, 0, bytes.Length);
             stream.Close();
-            HttpWebResponse httpResponse = (HttpWebResponse) await httpRequest.GetResponseAsync();
+            HttpWebResponse httpResponse = (HttpWebResponse)await httpRequest.GetResponseAsync();
             cookie.Add(httpResponse.Cookies);
             return new Tuple<Stream, CookieContainer>(httpResponse.GetResponseStream(), cookie);
         }
@@ -51,7 +52,7 @@ namespace LaCODESoftware.BasicHelper
             httpRequest.Accept = "text/html, application/xhtml+xml, */*";
             httpRequest.ContentType = "application/x-www-form-urlencoded";
             httpRequest.Method = "GET";
-            HttpWebResponse httpResponse = (HttpWebResponse) await httpRequest.GetResponseAsync();
+            HttpWebResponse httpResponse = (HttpWebResponse)await httpRequest.GetResponseAsync();
             if (httpResponse.Cookies.Count > 0)
             {
                 cookie.Add(httpResponse.Cookies);
@@ -125,11 +126,13 @@ namespace LaCODESoftware.BasicHelper
         /// </summary>
         /// <param name="setting"></param>
         /// <param name="cookie"></param>
-        public static void WriteCookiesToDisk(string file, CookieContainer cookie)
+        public static void WriteCookiesToDisk(string file, CookieContainerForSave cookie)
         {
             Stream stream = File.Create(file);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, cookie);
+            stream.Flush();
+            stream.Dispose();
         }
 
         /// <summary>
@@ -137,11 +140,18 @@ namespace LaCODESoftware.BasicHelper
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static CookieContainer ReadCookiesFromDisk(string file)
+        public static CookieContainerForSave ReadCookiesFromDisk(string file)
         {
             Stream stream = File.Open(file, FileMode.Open);
-            BinaryFormatter formatter = new BinaryFormatter();
-            return (CookieContainer)formatter.Deserialize(stream);
+            if (stream.Length != 0)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                return (CookieContainerForSave)formatter.Deserialize(stream);
+            }
+            else
+            {
+                return new CookieContainerForSave();
+            }
         }
     }
 }
