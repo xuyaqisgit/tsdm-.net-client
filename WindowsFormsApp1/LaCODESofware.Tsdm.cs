@@ -76,7 +76,7 @@ namespace LaCODESoftware.Tsdm
             {
                 string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>" +
                     "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" />" +
-                    "<style type=\"text/css\"> .user{ width:138px;} .avatar{ max-width:22px; max-height:19px;} .main{ width:321px;}.Tbody{ word-wrap:break-word;} .Tbody>img{ width:auto; height:auto; max-width:100%; max-height:100%;}</style></head>";
+                    "<style type=\"text/css\"> .user{ width:30%;} .avatar{ max-width:100%; max-height:100%;} .main{ width:70%;}.Tbody{ word-wrap:break-word;} .Tbody>img{ width:auto; height:auto; max-width:100%; max-height:100%;}</style></head>";
                 string post = "";
                 if (json.thread_price != null && json.thread_paid == "0")
                 {

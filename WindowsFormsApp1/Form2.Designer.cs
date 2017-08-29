@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.Edge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,11 +77,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // Edge
+            // 
+            this.Edge.Location = new System.Drawing.Point(291, 165);
+            this.Edge.Name = "Edge";
+            this.Edge.Size = new System.Drawing.Size(75, 23);
+            this.Edge.TabIndex = 4;
+            this.Edge.Text = "转换为Edge";
+            this.Edge.UseVisualStyleBackColor = true;
+            this.Edge.Click += new System.EventHandler(this.Edge_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 225);
+            this.Controls.Add(this.Edge);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
@@ -102,5 +114,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Edge;
     }
 }

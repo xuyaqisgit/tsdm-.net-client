@@ -1,4 +1,5 @@
 ﻿using LaCODESoftware.Tsdm;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LaCODESoftware.BasicHelper
 {
@@ -58,6 +60,25 @@ namespace LaCODESoftware.BasicHelper
                 cookie.Add(httpResponse.Cookies);
             }
             return new Tuple<Stream, CookieContainer>(httpResponse.GetResponseStream(), cookie);
+        }
+        /// <summary>
+        /// 将winform浏览器内核改为Edge
+        /// </summary>
+        public static void EdgeCoreChange()
+        {
+            string strFileName = Path.GetFileName(Application.ExecutablePath);
+            RegistryKey hkml = Registry.LocalMachine;
+            RegistryKey software = hkml.OpenSubKey("SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\MAIN\\FeatureControl\\FEATURE_BROWSER_EMULATION",true);
+            string[] subkeyNames = software.GetValueNames();
+            bool ex = false;
+            foreach (var item in subkeyNames)
+            {
+                ex = item == strFileName ? true : false;
+            }
+            if (!ex)
+            {
+                software.SetValue(strFileName, 0x00002EDF,RegistryValueKind.DWord);
+            }
         }
     }
     /// <summary>

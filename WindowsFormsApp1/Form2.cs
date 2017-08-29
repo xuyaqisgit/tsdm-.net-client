@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LaCODESoftware.BasicHelper;
+using System.Security.Principal;
 
 namespace LaCODESoftware.Tsdm
 {
@@ -37,6 +31,11 @@ namespace LaCODESoftware.Tsdm
             {
                 MessageBox.Show("无最新版本", "无最新版本", MessageBoxButtons.OK);
             }
+        }
+
+        private void Edge_Click(object sender, EventArgs e)
+        {
+            WebHelper.EdgeCoreChange();
         }
     }
 }
