@@ -76,7 +76,7 @@ namespace LaCODESoftware.Tsdm
             {
                 string head = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>" +
                     "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><base href=\"http://www.tsdm.me/\" />" +
-                    "<link rel=\"stylesheet\" href=\"https://xuyaqisgit.github.io/tsdm-.net-client/WebStyle.css\" type=\"text/css\" /></head>";
+                    "<style></style></head>";
                 string post = "";
                 if (json.thread_price != null && json.thread_paid == "0")
                 {
@@ -84,7 +84,7 @@ namespace LaCODESoftware.Tsdm
                 }
                 foreach (var item in json.postlist)
                 {
-                    post += String.Format("<table class=\"post_table\"><tbody><tr><td class=\"user_td\"><div class=\"user_div\"><div class=\"user_avatar_div\"><img class=\"avatar_div\" src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><divclass=\"username_div\">{1}</div><div class=\"nickname_div\">{2}</div><div class=\"userlevel_div\">{3}</div></div></td><td class=\"mainpost_td\"><div><div><table class=\"mainpost_table\"><tbody><tr><td class=\"post_td\">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
+                    post += String.Format("<table class=\"post_table\"><tbody><tr><td class=\"user_td\"><div class=\"user_div\"><div class=\"user_avatar_div\"><img class=\"avatar_img\" src=\"{0}\" onerror=\"this.onerror=null;this.src=\'http://www.tsdm.me/uc_server/images/noavatar_middle.gif\'\" /></div><divclass=\"username_div\">{1}</div><div class=\"nickname_div\">{2}</div><div class=\"userlevel_div\">{3}</div></div></td><td class=\"mainpost_td\"><div><div><table class=\"mainpost_table\"><tbody><tr><td class=\"post_td\">{4}</td></tr></tbody></table></td></tr></tbody></table><hr />", item.avatar.ToString(), item.author.ToString(), item.author_nickname.ToString(), item.authortitle.ToString(), item.message.ToString());
                 }
                 return head + "<body>" + post.Replace(" target=\"_blank\"", "") + "</body></html>";
             }
