@@ -1,4 +1,8 @@
-﻿.user {
+﻿* {
+    word-wrap: break-word;
+}
+
+.user {
     width: 30%;
 }
 
