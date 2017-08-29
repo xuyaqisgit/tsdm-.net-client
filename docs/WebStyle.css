@@ -1,21 +1,21 @@
-﻿.user {
+*{word-wrap: break-word;}
+.post_table{}
+.user_td {
     width: 30%;
 }
-
-.avatar {
-    max-width: 90%;
-    max-height: 90%;
+.user_div{}
+.user_avatar_div{}
+.avatar_img {
+    max-width: 100%;
+    max-height: 100%;
 }
-
-.main {
-    width: 70%;
-}
-
-.Tbody {
-    word-wrap: break-word;
-}
-
-    .Tbody > img {
+.username_div{}
+.nickname_div{}
+.userlevel_div{}
+.mainpost_td{width: 70%;}
+.mainpost_table{}
+.post_td{}
+    .post_td > img {
         width: auto;
         height: auto;
         max-width: 100%;
